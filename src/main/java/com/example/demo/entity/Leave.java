@@ -15,7 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table (name = "leave1")
+@Table(name = "empleave")
 public class Leave {
 
 	@Id
@@ -23,18 +23,18 @@ public class Leave {
 	@Column(name = "leave_id")
 	private Long leaveId;
 	
-//	@ManyToOne
-//	@JoinColumn(name = "emp_id")
-//	private Employee emp;
+	@ManyToOne
+	@JoinColumn(name = "emp_id")
+	private Employee employeeLeave;
 	
 	@Column(name = "date")
 	private Date date;
 	
 	@Column(name = "reason")
 	private String reason;
-//	
-//	@OneToMany(mappedBy = "leave")
-//	private List<Payroll> payrolls = new ArrayList<>();
+	
+	@OneToMany(mappedBy = "leavePayroll")
+	private List<Payroll> payrolls = new ArrayList<>();
 
 	
 }
