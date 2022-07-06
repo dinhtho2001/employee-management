@@ -45,5 +45,71 @@ public class Payroll {
 	@Column(name = "total_amount")
 	private Double totalAmount;
 
+	public Long getPayrollId() {
+		return payrollId;
+	}
+
+	public void setPayrollId(Long payrollId) {
+		this.payrollId = payrollId;
+	}
+
+	public Employee getEmployeePayroll() {
+		return employeePayroll;
+	}
+
+	public void setEmployeePayroll(Employee employeePayroll) {
+		this.employeePayroll = employeePayroll;
+	}
+
+	public JobDepartment getJobDepartmentPayroll() {
+		return jobDepartmentPayroll;
+	}
+
+	public void setJobDepartmentPayroll(JobDepartment jobDepartmentPayroll) {
+		this.jobDepartmentPayroll = jobDepartmentPayroll;
+	}
+
+	public SalaryBonus getSalaryBonusPayroll() {
+		return salaryBonusPayroll;
+	}
+
+	public void setSalaryBonusPayroll(SalaryBonus salaryBonusPayroll) {
+		this.salaryBonusPayroll = salaryBonusPayroll;
+	}
+
+	public Leave getLeavePayroll() {
+		return leavePayroll;
+	}
+
+	public void setLeavePayroll(Leave leavePayroll) {
+		this.leavePayroll = leavePayroll;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	public String getReport() {
+		return report;
+	}
+
+	public void setReport(String report) {
+		this.report = report;
+	}
+
+	public Double getTotalAmount() {
+		return totalAmount;
+	}
+
+	public void setTotalAmount(Double totalAmount) {
+		this.totalAmount = totalAmount;
+	}
+	
+	
+
 	
 }

@@ -32,6 +32,46 @@ public class Qualification {
 	
 	@Column(name = "date_in")
 	private Date dateIn;
+
+	public Long getQualId() {
+		return qualId;
+	}
+
+	public void setQualId(Long qualId) {
+		this.qualId = qualId;
+	}
+
+	public Employee getEmployeeQualification() {
+		return employeeQualification;
+	}
+
+	public void setEmployeeQualification(Employee employeeQualification) {
+		this.employeeQualification = employeeQualification;
+	}
+
+	public String getPosition() {
+		return position;
+	}
+
+	public void setPosition(String position) {
+		this.position = position;
+	}
+
+	public String getRequirements() {
+		return requirements;
+	}
+
+	public void setRequirements(String requirements) {
+		this.requirements = requirements;
+	}
+
+	public Date getDateIn() {
+		return dateIn;
+	}
+
+	public void setDateIn(Date dateIn) {
+		this.dateIn = dateIn;
+	}
 	
 	
 }

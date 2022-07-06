@@ -36,5 +36,44 @@ public class Leave {
 	@OneToMany(mappedBy = "leavePayroll")
 	private List<Payroll> payrolls = new ArrayList<>();
 
-	
+	public Long getLeaveId() {
+		return leaveId;
+	}
+
+	public void setLeaveId(Long leaveId) {
+		this.leaveId = leaveId;
+	}
+
+	public Employee getEmployeeLeave() {
+		return employeeLeave;
+	}
+
+	public void setEmployeeLeave(Employee employeeLeave) {
+		this.employeeLeave = employeeLeave;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	public String getReason() {
+		return reason;
+	}
+
+	public void setReason(String reason) {
+		this.reason = reason;
+	}
+
+	public List<Payroll> getPayrolls() {
+		return payrolls;
+	}
+
+	public void setPayrolls(List<Payroll> payrolls) {
+		this.payrolls = payrolls;
+	}
+
 }

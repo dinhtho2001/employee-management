@@ -37,7 +37,61 @@ public class JobDepartment {
 
 	@OneToMany(mappedBy = "jobDepartmentPayroll")
 	private List<Payroll>  payrolls= new ArrayList<>();
-	
 
+	public Long getJobId() {
+		return jobId;
+	}
+
+	public void setJobId(Long jobId) {
+		this.jobId = jobId;
+	}
+
+	public String getJopDept() {
+		return jopDept;
+	}
+
+	public void setJopDept(String jopDept) {
+		this.jopDept = jopDept;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getSalaryRange() {
+		return salaryRange;
+	}
+
+	public void setSalaryRange(String salaryRange) {
+		this.salaryRange = salaryRange;
+	}
+
+	public List<SalaryBonus> getSalaryBonus() {
+		return salaryBonus;
+	}
+
+	public void setSalaryBonus(List<SalaryBonus> salaryBonus) {
+		this.salaryBonus = salaryBonus;
+	}
+
+	public List<Payroll> getPayrolls() {
+		return payrolls;
+	}
+
+	public void setPayrolls(List<Payroll> payrolls) {
+		this.payrolls = payrolls;
+	}
 	
 }
