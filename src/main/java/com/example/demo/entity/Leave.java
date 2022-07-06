@@ -25,7 +25,7 @@ public class Leave {
 	
 	@ManyToOne
 	@JoinColumn(name = "emp_id")
-	private Employee employeeLeave;
+	private Employee employeeId;
 	
 	@Column(name = "date")
 	private Date date;
@@ -33,7 +33,7 @@ public class Leave {
 	@Column(name = "reason")
 	private String reason;
 	
-	@OneToMany(mappedBy = "leavePayroll")
+	@OneToMany(mappedBy = "leaveId")
 	private List<Payroll> payrolls = new ArrayList<>();
 
 	public Long getLeaveId() {
@@ -44,12 +44,14 @@ public class Leave {
 		this.leaveId = leaveId;
 	}
 
-	public Employee getEmployeeLeave() {
-		return employeeLeave;
+	
+
+	public Employee getEmployeeId() {
+		return employeeId;
 	}
 
-	public void setEmployeeLeave(Employee employeeLeave) {
-		this.employeeLeave = employeeLeave;
+	public void setEmployeeId(Employee employeeId) {
+		this.employeeId = employeeId;
 	}
 
 	public Date getDate() {

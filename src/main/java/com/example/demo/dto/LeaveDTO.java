@@ -8,7 +8,7 @@ public class LeaveDTO {
 
 	private Long leaveId;
 	
-	private Employee employeeLeave;
+	private Long employeeId;
 	
 	private Date date;
 	
@@ -20,14 +20,6 @@ public class LeaveDTO {
 
 	public void setLeaveId(Long leaveId) {
 		this.leaveId = leaveId;
-	}
-
-	public Employee getEmployeeLeave() {
-		return employeeLeave;
-	}
-
-	public void setEmployeeLeave(Employee employeeLeave) {
-		this.employeeLeave = employeeLeave;
 	}
 
 	public Date getDate() {
@@ -44,6 +36,14 @@ public class LeaveDTO {
 
 	public void setReason(String reason) {
 		this.reason = reason;
+	}
+
+	public Long getEmployeeId() {
+		return employeeId;
+	}
+
+	public void setEmployeeId(Long employeeId) {
+		this.employeeId = employeeId;
 	}
 	
 }

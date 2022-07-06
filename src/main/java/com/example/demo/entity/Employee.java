@@ -42,13 +42,13 @@ public class Employee {
 	@Column(name = "emp_pass")
 	private String empPass;
 	
-	@OneToMany(mappedBy = "employeeLeave")
+	@OneToMany(mappedBy = "employeeId")
 	private List<Leave> leaves = new ArrayList<>();
 
-	@OneToMany(mappedBy = "employeeQualification")
+	@OneToMany(mappedBy = "employeeId")
 	private List<Qualification>  qualifications= new ArrayList<>();
 	
-	@OneToMany(mappedBy = "employeePayroll")
+	@OneToMany(mappedBy = "employeeId")
 	private List<Payroll> payrolls = new ArrayList<>();
 
 	public Long getEmpId() {

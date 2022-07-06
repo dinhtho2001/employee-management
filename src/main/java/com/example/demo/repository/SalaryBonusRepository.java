@@ -1,5 +1,9 @@
 package com.example.demo.repository;
 
-public interface SalaryBonusRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
 
+import com.example.demo.entity.SalaryBonus;
+
+public interface SalaryBonusRepository extends JpaRepository<SalaryBonus, Long>{
+	//SalaryBonus findOneBySalaryId (Long salaryId);
 }

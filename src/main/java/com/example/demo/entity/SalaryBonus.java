@@ -24,7 +24,7 @@ public class SalaryBonus {
 	
 	@ManyToOne
 	@JoinColumn(name = "job_id")
-	private JobDepartment jobDepartmentSalaryBonus;
+	private JobDepartment jobDepartmentId;
 	
 	@Column(name = "amount")
 	private Double amount;
@@ -35,8 +35,58 @@ public class SalaryBonus {
 	@Column(name = "bonus")
 	private Double bonus;
 	
-	@OneToMany(mappedBy = "salaryBonusPayroll")
+	@OneToMany(mappedBy = "salaryBonusId")
 	private List<Payroll> payrolls = new ArrayList<>();
+
+	public Long getSalaryId() {
+		return salaryId;
+	}
+
+	public void setSalaryId(Long salaryId) {
+		this.salaryId = salaryId;
+	}
+
+	
+
+	public JobDepartment getJobDepartmentId() {
+		return jobDepartmentId;
+	}
+
+	public void setJobDepartmentId(JobDepartment jobDepartmentId) {
+		this.jobDepartmentId = jobDepartmentId;
+	}
+
+	public Double getAmount() {
+		return amount;
+	}
+
+	public void setAmount(Double amount) {
+		this.amount = amount;
+	}
+
+	public String getAnual() {
+		return anual;
+	}
+
+	public void setAnual(String anual) {
+		this.anual = anual;
+	}
+
+	public Double getBonus() {
+		return bonus;
+	}
+
+	public void setBonus(Double bonus) {
+		this.bonus = bonus;
+	}
+
+	public List<Payroll> getPayrolls() {
+		return payrolls;
+	}
+
+	public void setPayrolls(List<Payroll> payrolls) {
+		this.payrolls = payrolls;
+	}
 	
 	
 }

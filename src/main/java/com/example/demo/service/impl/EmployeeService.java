@@ -14,68 +14,67 @@ import com.example.demo.entity.Employee;
 import com.example.demo.repository.EmployeeRepository;
 import com.example.demo.service.IEmployeeService;
 
-
 @Service
 public class EmployeeService implements IEmployeeService{
 
 	@Autowired
-	private EmployeeRepository  employeeRepository;
+	private EmployeeRepository repository;
 
 	@Autowired
-	private EmployeeConverter employeeConverter ;
+	private EmployeeConverter converter ;
 
 	@Override
 	public EmployeeResponse findAll(int page, int limit) {
-		EmployeeResponse employeeResponse = new EmployeeResponse();
-		employeeResponse.setPage(page);
+		EmployeeResponse response = new EmployeeResponse();
+		response.setPage(page);
 		Pageable pageable = PageRequest.of(page-1, limit);
-		employeeResponse.setListResult(findAll(pageable));
-		employeeResponse.setTotalPage((int)Math.ceil( (double) (totalTtem()) / limit));
-		return employeeResponse;
+		response.setListResult(findAll(pageable));
+		response.setTotalPage((int)Math.ceil( (double) (totalTtem()) / limit));
+		return response;
 	}
 	
 	@Override
 	public int totalTtem() {
-		return (int)employeeRepository.count();
+		return (int)repository.count();
 	}
 
 	@Override
 	public EmployeeDTO findOne(Long id) {
-		Employee employeeEntities = employeeRepository.findById(id).orElse(null);		
-		EmployeeDTO employeeDTO = new EmployeeDTO();
-		employeeDTO = employeeConverter.toDTO(employeeEntities);
-		return employeeDTO;
+		Employee employeeEntities = repository.findById(id).orElse(null);		
+		EmployeeDTO dto = new EmployeeDTO();
+		dto = converter.toDTO(employeeEntities);
+		return dto;
 	}
 
 	@Override
-	public EmployeeDTO newEmployee(EmployeeDTO employeeDTO) {
-		Employee employee = employeeConverter.toEntity(employeeDTO);
-		Employee result = employeeRepository.save(employee);
-		return employeeConverter.toDTO(result);
+	public EmployeeDTO create(EmployeeDTO employeeDTO) {
+		Employee employee = converter.toEntity(employeeDTO);
+		Employee result = repository.save(employee);
+		return converter.toDTO(result);
 	}
 	
 	@Override
-	public String deleteEmployee(Long id) {
-		employeeRepository.deleteById(id);
+	public String delete(Long id) {
+		repository.deleteById(id);
 		return "Delete success";
 	}
 	
 	public List<EmployeeDTO> findAll(Pageable pageable){		
 		List<EmployeeDTO> employeeDTOs = new ArrayList<>();
-		List<Employee> employeeEntities = employeeRepository.findAll(pageable).getContent();
-		for(Employee item : employeeEntities) {
-			EmployeeDTO employeeDTO = employeeConverter.toDTO(item);
-			employeeDTOs.add(employeeDTO);
+		List<Employee> employees = repository.findAll(pageable).getContent();
+		for(Employee item : employees) {
+			EmployeeDTO dto = converter.toDTO(item);
+			employeeDTOs.add(dto);
 		}
 		return employeeDTOs;
 	}
 
 	@Override
-	public EmployeeDTO updateEmployee(EmployeeDTO employeeDTO) {
-		Employee employee = employeeRepository.findById(employeeDTO.getEmpId()).orElse(null);
-		Employee newEmployee = employeeConverter.toEntity(employeeDTO, employee);
-		newEmployee = employeeRepository.save(newEmployee);
-		return employeeConverter.toDTO(newEmployee);
+	public EmployeeDTO update(EmployeeDTO employeeDTO) {
+		Employee employee = repository.findById(employeeDTO.getEmpId()).orElse(null);
+		Employee entitis = converter.toEntity(employeeDTO, employee);
+		entitis = repository.save(entitis);
+		return converter.toDTO(entitis);
 	}
 	
 }

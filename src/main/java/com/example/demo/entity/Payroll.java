@@ -22,19 +22,19 @@ public class Payroll {
 	
 	@ManyToOne
 	@JoinColumn(name = "emp_id")
-	private Employee employeePayroll;
+	private Employee employeeId;
 	
 	@ManyToOne
 	@JoinColumn(name = "job_id")
-	private JobDepartment jobDepartmentPayroll;
+	private JobDepartment jobDepartmentId;
 	
 	@ManyToOne
 	@JoinColumn(name = "salary_id")
-	private SalaryBonus salaryBonusPayroll;
+	private SalaryBonus salaryBonusId;
 	
 	@ManyToOne
 	@JoinColumn(name = "leave_id")
-	private Leave leavePayroll;
+	private Leave leaveId;
 	
 	@Column(name = "date")
 	private Date date;
@@ -53,36 +53,38 @@ public class Payroll {
 		this.payrollId = payrollId;
 	}
 
-	public Employee getEmployeePayroll() {
-		return employeePayroll;
+
+
+	public Employee getEmployeeId() {
+		return employeeId;
 	}
 
-	public void setEmployeePayroll(Employee employeePayroll) {
-		this.employeePayroll = employeePayroll;
+	public void setEmployeeId(Employee employeeId) {
+		this.employeeId = employeeId;
 	}
 
-	public JobDepartment getJobDepartmentPayroll() {
-		return jobDepartmentPayroll;
+	public JobDepartment getJobDepartmentId() {
+		return jobDepartmentId;
 	}
 
-	public void setJobDepartmentPayroll(JobDepartment jobDepartmentPayroll) {
-		this.jobDepartmentPayroll = jobDepartmentPayroll;
+	public void setJobDepartmentId(JobDepartment jobDepartmentId) {
+		this.jobDepartmentId = jobDepartmentId;
 	}
 
-	public SalaryBonus getSalaryBonusPayroll() {
-		return salaryBonusPayroll;
+	public SalaryBonus getSalaryBonusId() {
+		return salaryBonusId;
 	}
 
-	public void setSalaryBonusPayroll(SalaryBonus salaryBonusPayroll) {
-		this.salaryBonusPayroll = salaryBonusPayroll;
+	public void setSalaryBonusId(SalaryBonus salaryBonusId) {
+		this.salaryBonusId = salaryBonusId;
 	}
 
-	public Leave getLeavePayroll() {
-		return leavePayroll;
+	public Leave getLeaveId() {
+		return leaveId;
 	}
 
-	public void setLeavePayroll(Leave leavePayroll) {
-		this.leavePayroll = leavePayroll;
+	public void setLeaveId(Leave leaveId) {
+		this.leaveId = leaveId;
 	}
 
 	public Date getDate() {

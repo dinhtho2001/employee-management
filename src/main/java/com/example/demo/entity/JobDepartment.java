@@ -32,10 +32,10 @@ public class JobDepartment {
 	@Column(name = "salary_range")
 	private String salaryRange;
 	
-	@OneToMany(mappedBy = "jobDepartmentSalaryBonus")
+	@OneToMany(mappedBy = "jobDepartmentId")
 	private List<SalaryBonus> salaryBonus = new ArrayList<>();
 
-	@OneToMany(mappedBy = "jobDepartmentPayroll")
+	@OneToMany(mappedBy = "jobDepartmentId")
 	private List<Payroll>  payrolls= new ArrayList<>();
 
 	public Long getJobId() {

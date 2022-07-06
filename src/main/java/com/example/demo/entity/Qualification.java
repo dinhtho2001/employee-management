@@ -22,7 +22,7 @@ public class Qualification {
 	
 	@ManyToOne
 	@JoinColumn(name = "emp_id")
-	private Employee employeeQualification;
+	private Employee employeeId;
 	
 	@Column(name = "position")
 	private String position;
@@ -41,12 +41,13 @@ public class Qualification {
 		this.qualId = qualId;
 	}
 
-	public Employee getEmployeeQualification() {
-		return employeeQualification;
+
+	public Employee getEmployeeId() {
+		return employeeId;
 	}
 
-	public void setEmployeeQualification(Employee employeeQualification) {
-		this.employeeQualification = employeeQualification;
+	public void setEmployeeId(Employee employeeId) {
+		this.employeeId = employeeId;
 	}
 
 	public String getPosition() {
