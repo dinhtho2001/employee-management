@@ -75,8 +75,12 @@ public class EmployeeService implements IEmployeeService{
 	
 	@Override
 	public String delete(Long id) {
-		repository.deleteById(id);
-		return "Delete success";
+		try {
+			repository.deleteById(id);
+			return "Delete success";
+		} catch (Exception e) {
+			return "Delete failed";
+		}
 	}
 	
 	@Override
