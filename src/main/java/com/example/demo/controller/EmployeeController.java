@@ -51,4 +51,10 @@ public class EmployeeController {
 		return service.delete(id);
 	}
 	
+	@DeleteMapping(value="/employee")
+	public String deletes(@RequestBody Long[] ids) {
+		
+		return service.deletes(ids);
+	}
+	
 }

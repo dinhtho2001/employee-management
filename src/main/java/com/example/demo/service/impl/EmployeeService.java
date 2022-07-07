@@ -53,11 +53,7 @@ public class EmployeeService implements IEmployeeService{
 		return converter.toDTO(result);
 	}
 	
-	@Override
-	public String delete(Long id) {
-		repository.deleteById(id);
-		return "Delete success";
-	}
+	
 	
 	public List<EmployeeDTO> findAll(Pageable pageable){		
 		List<EmployeeDTO> employeeDTOs = new ArrayList<>();
@@ -75,6 +71,24 @@ public class EmployeeService implements IEmployeeService{
 		Employee entitis = converter.toEntity(employeeDTO, employee);
 		entitis = repository.save(entitis);
 		return converter.toDTO(entitis);
+	}
+	
+	@Override
+	public String delete(Long id) {
+		repository.deleteById(id);
+		return "Delete success";
+	}
+	
+	@Override
+	public String deletes(Long[] ids) {
+		try {
+			for (long item : ids) {
+				repository.deleteById(item);
+			}
+			return "Delete success";
+		} catch (Exception e) {
+			return "Delete failed";
+		}
 	}
 	
 }

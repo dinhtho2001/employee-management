@@ -11,4 +11,5 @@ public interface IEmployeeService {
 	EmployeeDTO create(EmployeeDTO employeeDTO);
 	EmployeeDTO update(EmployeeDTO employeeDTO);
 	String delete(Long id);
+	String deletes(Long[] ids);
 }
