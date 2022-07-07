@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -33,6 +35,11 @@ public class EmployeeController {
 		return service.findOne(id);
 	}
 	
+	@PostMapping(value="/employees")
+	public EmployeeDTO[] creates(@RequestBody EmployeeDTO[] dtos ) {
+		
+		return service.creates(dtos);
+	}
 	@PostMapping(value="/employee")
 	public EmployeeDTO create(@RequestBody EmployeeDTO dto ) {
 		
@@ -51,7 +58,7 @@ public class EmployeeController {
 		return service.delete(id);
 	}
 	
-	@DeleteMapping(value="/employee")
+	@DeleteMapping(value="/employees")
 	public String deletes(@RequestBody Long[] ids) {
 		
 		return service.deletes(ids);

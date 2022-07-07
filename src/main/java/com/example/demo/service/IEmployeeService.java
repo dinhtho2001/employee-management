@@ -8,8 +8,9 @@ public interface IEmployeeService {
 	EmployeeResponse findAll(int page, int limit);
 	int totalTtem();
 	EmployeeDTO findOne(Long id);
-	EmployeeDTO create(EmployeeDTO employeeDTO);
-	EmployeeDTO update(EmployeeDTO employeeDTO);
+	EmployeeDTO[] creates (EmployeeDTO[] dtos);
+	EmployeeDTO create(EmployeeDTO dto);
+	EmployeeDTO update(EmployeeDTO dto);
 	String delete(Long id);
 	String deletes(Long[] ids);
 }

@@ -38,14 +38,8 @@ public class EmployeeService implements IEmployeeService{
 			
 		}
 		return response;
-		
 	}
 	
-	@Override
-	public int totalTtem() {
-		return (int)repository.count();
-	}
-
 	@Override
 	public EmployeeDTO findOne(Long id) {
 		try {
@@ -56,7 +50,15 @@ public class EmployeeService implements IEmployeeService{
 		} catch (Exception e) {
 			return null;
 		}
-		
+	}
+	
+	@Override
+	public int totalTtem() {
+		try {
+			return (int)repository.count();
+		} catch (Exception e) {
+			return 0;
+		}
 	}
 
 	@Override
@@ -65,8 +67,6 @@ public class EmployeeService implements IEmployeeService{
 		Employee result = repository.save(employee);
 		return converter.toDTO(result);
 	}
-	
-	
 	
 	public List<EmployeeDTO> findAll(Pageable pageable){		
 		List<EmployeeDTO> employeeDTOs = new ArrayList<>();
@@ -111,5 +111,6 @@ public class EmployeeService implements IEmployeeService{
 			return "Delete failed";
 		}
 	}
+	
 	
 }
