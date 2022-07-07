@@ -26,11 +26,19 @@ public class EmployeeService implements IEmployeeService{
 	@Override
 	public EmployeeResponse findAll(int page, int limit) {
 		EmployeeResponse response = new EmployeeResponse();
-		response.setPage(page);
-		Pageable pageable = PageRequest.of(page-1, limit);
-		response.setListResult(findAll(pageable));
-		response.setTotalPage((int)Math.ceil( (double) (totalTtem()) / limit));
+		try {
+			Pageable pageable = PageRequest.of(page-1, limit);
+			response.setListResult(findAll(pageable));
+		} catch (Exception e) {
+			return null;
+		}
+		finally {
+			response.setPage(page);
+			response.setTotalPage((int)Math.ceil( (double) (totalTtem()) / limit));
+			
+		}
 		return response;
+		
 	}
 	
 	@Override
@@ -40,10 +48,15 @@ public class EmployeeService implements IEmployeeService{
 
 	@Override
 	public EmployeeDTO findOne(Long id) {
-		Employee employeeEntities = repository.findById(id).orElse(null);		
-		EmployeeDTO dto = new EmployeeDTO();
-		dto = converter.toDTO(employeeEntities);
-		return dto;
+		try {
+			Employee employee = repository.findById(id).orElse(null);	
+			EmployeeDTO dto = new EmployeeDTO();
+			dto = converter.toDTO(employee);
+			return dto;
+		} catch (Exception e) {
+			return null;
+		}
+		
 	}
 
 	@Override
@@ -67,10 +80,14 @@ public class EmployeeService implements IEmployeeService{
 
 	@Override
 	public EmployeeDTO update(EmployeeDTO employeeDTO) {
-		Employee employee = repository.findById(employeeDTO.getEmpId()).orElse(null);
-		Employee entitis = converter.toEntity(employeeDTO, employee);
-		entitis = repository.save(entitis);
-		return converter.toDTO(entitis);
+		try {
+			Employee employee = repository.findById(employeeDTO.getEmpId()).orElse(null);
+			Employee entitis = converter.toEntity(employeeDTO, employee);
+			entitis = repository.save(entitis);
+			return converter.toDTO(entitis);
+		} catch (Exception e) {
+			return null;
+		}
 	}
 	
 	@Override
