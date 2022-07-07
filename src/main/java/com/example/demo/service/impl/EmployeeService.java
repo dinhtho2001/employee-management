@@ -62,6 +62,22 @@ public class EmployeeService implements IEmployeeService{
 	}
 
 	@Override
+	public EmployeeDTO[] creates(EmployeeDTO[] dtos) {
+		try {
+			int i = 0;
+			EmployeeDTO[] employeeDTOs = new EmployeeDTO[dtos.length];
+			for (EmployeeDTO item : dtos) {
+				Employee employee = repository.save(converter.toEntity(item));
+				employeeDTOs[i] = converter.toDTO(employee);
+				i++;	
+			}
+			return employeeDTOs;
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	
+	@Override
 	public EmployeeDTO create(EmployeeDTO employeeDTO) {
 		Employee employee = converter.toEntity(employeeDTO);
 		Employee result = repository.save(employee);
@@ -111,6 +127,5 @@ public class EmployeeService implements IEmployeeService{
 			return "Delete failed";
 		}
 	}
-	
 	
 }
