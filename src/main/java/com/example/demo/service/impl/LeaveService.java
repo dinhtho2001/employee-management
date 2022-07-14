@@ -46,12 +46,13 @@ public class LeaveService implements ILeaveService{
 
 	@Override
 	public LeaveDTO findOne(Long id) {
-		Leave leave = leaveRepository.findById(id).orElse(null);		
-		LeaveDTO dto = new LeaveDTO();
-		dto = converter.toDTO(leave);
+		Leave leave = leaveRepository.findById(id).orElse(null);
+		LeaveDTO dto = converter.toDTO(leave);
+//		Employee employee = employeeRepository.findOneByEmpId(leave.getEmployeeId());
+//		dto.setEmployeeId(employee.getEmpId());
 		return dto;
 	}
-
+	
 	@Override
 	public LeaveDTO create(LeaveDTO dto) {
 		Employee employee = employeeRepository.findOneByEmpId(dto.getEmployeeId());

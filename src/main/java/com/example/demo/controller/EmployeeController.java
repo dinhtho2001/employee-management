@@ -34,11 +34,11 @@ public class EmployeeController {
 		return service.findOne(id);
 	}
 	
-	@PostMapping
-	public EmployeeDTO[] creates(@RequestBody EmployeeDTO[] dtos ) {
-		
-		return service.creates(dtos);
-	}
+//	@PostMapping
+//	public EmployeeDTO[] creates(@RequestBody EmployeeDTO[] dtos ) {
+//		
+//		return service.creates(dtos);
+//	}
 	@PostMapping
 	public EmployeeDTO create(@RequestBody EmployeeDTO dto ) {
 		

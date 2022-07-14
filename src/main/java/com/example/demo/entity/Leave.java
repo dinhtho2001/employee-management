@@ -43,9 +43,7 @@ public class Leave {
 	public void setLeaveId(Long leaveId) {
 		this.leaveId = leaveId;
 	}
-
 	
-
 	public Employee getEmployeeId() {
 		return employeeId;
 	}

@@ -6,5 +6,5 @@ import com.example.demo.entity.Employee;
 
 public interface EmployeeRepository extends JpaRepository<Employee, Long>{
 	Employee findOneByEmpId(Long empId);
-	
+	Employee findOneByEmpId(Employee empId);
 }

@@ -2,8 +2,6 @@ package com.example.demo.dto;
 
 import java.util.Date;
 
-import com.example.demo.entity.Employee;
-
 public class LeaveDTO {
 
 	private Long leaveId;
