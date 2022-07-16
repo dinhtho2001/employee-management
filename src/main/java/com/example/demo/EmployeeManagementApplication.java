@@ -6,8 +6,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @SpringBootApplication
-//@EnableAutoConfiguration(exclude = { DataSourceAutoConfiguration.class,
-//		DataSourceTransactionManagerAutoConfiguration.class, HibernateJpaAutoConfiguration.class })
 public class EmployeeManagementApplication {
 
 	@Bean

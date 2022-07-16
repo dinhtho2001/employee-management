@@ -20,21 +20,20 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
-import com.example.demo.entity.User;
 import com.example.demo.repository.UserRepository;
-import com.example.demo.service.user.impl.UserService;
+import com.example.demo.service.user.impl.UserDetailsServiceImpl;
 
 public class AuthorizationFilter extends BasicAuthenticationFilter {
 
 	private UserRepository userRepository;
 
-	private UserService userService;
+	private UserDetailsServiceImpl detailsServiceImpl;
 
 	public AuthorizationFilter(AuthenticationManager authManager, UserRepository userRepository,
-			UserService userService) {
+			UserDetailsServiceImpl detailsServiceImpl) {
 		super(authManager);
 		this.userRepository = userRepository;
-		this.userService = userService;
+		this.detailsServiceImpl = detailsServiceImpl;
 	}
 
 	@Override
@@ -63,8 +62,8 @@ public class AuthorizationFilter extends BasicAuthenticationFilter {
 
 			if (userName != null) {
 				userRepository.findByUsername(userName);
-				List<GrantedAuthority> grantedList = userService.getGrantedList(userName);
-				return new UsernamePasswordAuthenticationToken(userName, null, grantedList);
+				List<GrantedAuthority> grantedAuthorities = detailsServiceImpl.grantedAuthorities(userName);
+				return new UsernamePasswordAuthenticationToken(userName, null, grantedAuthorities);
 			}
 			return null;
 		}

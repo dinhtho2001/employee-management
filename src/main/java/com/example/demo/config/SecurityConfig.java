@@ -16,7 +16,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import com.example.demo.config.jwt.AuthenticationFilter;
 import com.example.demo.config.jwt.AuthorizationFilter;
 import com.example.demo.repository.UserRepository;
-import com.example.demo.service.user.impl.UserService;
+import com.example.demo.service.user.impl.UserDetailsServiceImpl;
 
 @SuppressWarnings("deprecation")
 @Configuration
@@ -30,13 +30,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	
 	@Autowired
-	private UserService userService;
+	private  UserDetailsServiceImpl detailsServiceImpl;
 	
 	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth
-			.userDetailsService(userService)
+			.userDetailsService(detailsServiceImpl)
 			.passwordEncoder(bCryptPasswordEncoder);
 	}
 
@@ -44,26 +44,30 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		
 		http
-			.csrf().disable()
+			.cors()
+			.and().csrf().disable()
 			.authorizeRequests()
-			.antMatchers("/employees/**").permitAll()
+			.antMatchers("/").permitAll()//.hasAnyAuthority("USER","ADMIN")
+			.antMatchers("/employees/**").hasAuthority("USER")
+			.antMatchers("/leaves/**").hasAuthority("ADMIN")
+			.antMatchers("/users/**").permitAll()
 			.anyRequest().authenticated()
 			.and().httpBasic()
-//			.and().formLogin()
-//			.defaultSuccessUrl("/users/login?cuscess=true")
-//			.failureUrl("/users/login?cuscess=fail")
-//			.loginProcessingUrl("/users/login")
-			.and().logout().permitAll()
-			//.and()
+			.and().logout().permitAll()                                           
+		            //.logoutUrl("/users/logout/")                                                                
+		            //.invalidateHttpSession(true)                                  	                                                                          
+			.and().exceptionHandling().accessDeniedPage("/403")
+			.and()
 			//.addFilter(new AuthenticationFilter(authenticationManager()))
-			//.addFilter(new AuthorizationFilter(authenticationManager(), userRepository, userService))
-			//.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+			//.addFilter(new AuthorizationFilter(authenticationManager(), userRepository, detailsServiceImpl))
+			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 			;
 		
-//		http.authorizeRequests()
-//			.and()
-//			.exceptionHandling()
-//			.accessDeniedPage("/users/403");
 	}
-	
+	@Bean
+	  CorsConfigurationSource corsConfigurationSource() {
+	    final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+	    source.registerCorsConfiguration("/**", new CorsConfiguration().applyPermitDefaultValues());
+	    return source;
+	  }
 }
