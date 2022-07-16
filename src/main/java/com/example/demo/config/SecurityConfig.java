@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -53,14 +54,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers("/users/**").permitAll()
 			.anyRequest().authenticated()
 			.and().httpBasic()
-			.and().logout().permitAll()                                           
-		            //.logoutUrl("/users/logout/")                                                                
-		            //.invalidateHttpSession(true)                                  	                                                                          
+			.and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+			.clearAuthentication(true)
+			.logoutSuccessUrl("/")
+			.deleteCookies("JSESSIONID")
+			.invalidateHttpSession(true).permitAll()                                 	                                                                          
 			.and().exceptionHandling().accessDeniedPage("/403")
 			.and()
 			//.addFilter(new AuthenticationFilter(authenticationManager()))
 			//.addFilter(new AuthorizationFilter(authenticationManager(), userRepository, detailsServiceImpl))
-			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
 			;
 		
 	}
