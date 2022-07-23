@@ -1,33 +1,36 @@
 package com.example.demo.entity;
 
-import static javax.persistence.GenerationType.IDENTITY;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.example.demo.entity.constants.ERoles;
 
 @Entity
 @Table(name = "role", catalog = "employee_management")
 public class Role {
 
 	@Id
-	@GeneratedValue(strategy = IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", unique = true, nullable = false)
 	private Integer id;
 	
-	@Column(name = "name", length = 45)
-	private String name;
-	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "role")
-	private List<UsersRoles> usersRoleses = new ArrayList<>();
+	@Enumerated(EnumType.STRING)
+	@Column(name = "name", length = 20)
+	private ERoles name;
 
+	public Role() {
+	}
+	
+	public Role(ERoles name) {
+		this.name = name;
+	}
+	
 	public Integer getId() {
 		return id;
 	}
@@ -36,20 +39,12 @@ public class Role {
 		this.id = id;
 	}
 
-	public String getName() {
+	public ERoles getName() {
 		return name;
 	}
 
-	public void setName(String name) {
+	public void setName(ERoles name) {
 		this.name = name;
 	}
 
-	public List<UsersRoles> getUsersRoleses() {
-		return usersRoleses;
-	}
-
-	public void setUsersRoleses(List<UsersRoles> usersRoleses) {
-		this.usersRoleses = usersRoleses;
-	}
-	
 }

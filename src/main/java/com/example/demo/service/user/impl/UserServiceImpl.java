@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 import com.example.demo.dto.user.UserDTO;
 import com.example.demo.entity.Role;
 import com.example.demo.entity.User;
-import com.example.demo.entity.UsersRoles;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.service.user.IUserService;
 
@@ -34,24 +33,25 @@ public class UserServiceImpl implements IUserService{
 
 	@Override
 	public UserDTO findByUsername(String username) {
-		List<UsersRoles> usersRoles = userRepository.findByUsername(username).getUsersRoleses();
-		if (usersRoles != null) {
-			System.out.print("User Name: " + username);
-			List<Role> roles = new ArrayList<>();
-			for (UsersRoles item : usersRoles) {
-				Role role = item.getRole();
-				roles.add(role);
-			}
-			if (roles != null) {
-				for (Role role : roles) {
-					System.out.print(" -- role: " + role.getName());
-				}
-			}
-			return null;
-		}
-		else {
-			return null;
-		}
+//		List<UsersRoles> usersRoles = userRepository.findByUsername(username).getUsersRoleses();
+//		if (usersRoles != null) {
+//			System.out.print("User Name: " + username);
+//			List<Role> roles = new ArrayList<>();
+//			for (UsersRoles item : usersRoles) {
+//				Role role = item.getRole();
+//				roles.add(role);
+//			}
+//			if (roles != null) {
+//				for (Role role : roles) {
+//					System.out.print(" -- role: " + role.getName());
+//				}
+//			}
+//			return null;
+//		}
+//		else {
+//			return null;
+//		}
+		return null;
 	}
 
 	@Override

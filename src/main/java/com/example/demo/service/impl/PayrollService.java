@@ -1,5 +1,5 @@
 package com.example.demo.service.impl;
 
-public interface PayrollService {
+public class PayrollService {
 
 }
