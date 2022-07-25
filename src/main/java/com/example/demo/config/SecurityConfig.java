@@ -7,6 +7,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -33,6 +34,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private  AuthEntryPointJwt unauthorizedHandler;
 	
+	@Bean
+	AuthTokenFilter authenticationJwtTokenFilter() {
+		return new AuthTokenFilter();
+	}
+	
+	@Bean
+	PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
+	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth
@@ -50,26 +61,28 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.exceptionHandling().authenticationEntryPoint(unauthorizedHandler)
 			.and()
 				.authorizeRequests()
-				.antMatchers("/").permitAll()//.hasAnyAuthority("USER","ADMIN")
+				.antMatchers("/").permitAll()//.hasAnyAuthority("ROLE_USER","ROLE_ADMIN")
 				.antMatchers("/employees/**").hasAuthority("USER")
 				.antMatchers("/leaves/**").hasAuthority("ADMIN")
 				.antMatchers("/api/auth/**").permitAll()
-				.anyRequest().authenticated()
-//			.and().httpBasic()
-//			.and()
-//				.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-//				.clearAuthentication(true)
-//				.logoutSuccessUrl("/")
-//				.deleteCookies("JSESSIONID")
-//				.invalidateHttpSession(true).permitAll()                                 	                                                                          
+				.anyRequest().authenticated()                            	                                                                          
 			.and()
 				.exceptionHandling().accessDeniedPage("/403")
 			.and()
-				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
+				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 			;
 		
 		http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
 		
+	}
+	
+	@Override
+	public void configure(WebSecurity web) throws Exception {
+		web.ignoring().antMatchers("/swagger-ui.html")
+        .antMatchers("/webjars/springfox-swagger-ui/**")
+        .antMatchers("/swagger-resources/**")
+        .antMatchers("/v2/api-docs");
+		super.configure(web);
 	}
 	
 	@Bean
@@ -77,17 +90,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	public AuthenticationManager authenticationManagerBean() throws Exception {
 		return super.authenticationManagerBean();
 	}
-	
-	@Bean
-	AuthTokenFilter authenticationJwtTokenFilter() {
-		return new AuthTokenFilter();
-	}
-	
-	@Bean
-	PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
-
-	
 
 }
