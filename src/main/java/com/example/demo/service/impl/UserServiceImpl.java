@@ -1,4 +1,4 @@
-package com.example.demo.service.user.impl;
+package com.example.demo.service.impl;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -14,7 +14,7 @@ import com.example.demo.dto.user.UserDTO;
 import com.example.demo.entity.Role;
 import com.example.demo.entity.User;
 import com.example.demo.repository.UserRepository;
-import com.example.demo.service.user.IUserService;
+import com.example.demo.service.IUserService;
 
 @Service
 public class UserServiceImpl implements IUserService{

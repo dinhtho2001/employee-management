@@ -28,8 +28,8 @@ import com.example.demo.dto.request.SignupRequest;
 import com.example.demo.dto.response.JwtResponse;
 import com.example.demo.dto.response.MessageResponse;
 import com.example.demo.repository.UserRepository;
+import com.example.demo.service.userdetail.UserDetailsImpl;
 import com.example.demo.config.jwt.JwtUtils;
-import com.example.demo.service.impl.UserDetailsImpl;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController

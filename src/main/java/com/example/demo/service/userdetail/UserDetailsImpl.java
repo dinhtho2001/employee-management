@@ -1,17 +1,14 @@
-package com.example.demo.service.impl;
+package com.example.demo.service.userdetail;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-import javax.swing.text.StyledEditorKit.BoldAction;
-
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.example.demo.entity.Role;
 import com.example.demo.entity.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 

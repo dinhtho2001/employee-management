@@ -16,7 +16,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import com.example.demo.config.jwt.AuthEntryPointJwt;
 import com.example.demo.config.jwt.AuthTokenFilter;
-import com.example.demo.service.user.impl.UserDetailsServiceImpl;
+import com.example.demo.service.userdetail.UserDetailsServiceImpl;
 
 @SuppressWarnings("deprecation")
 @Configuration

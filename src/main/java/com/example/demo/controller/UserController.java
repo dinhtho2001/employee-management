@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dto.user.UserDTO;
 import com.example.demo.entity.User;
-import com.example.demo.service.user.IUserService;
+import com.example.demo.service.IUserService;
 
 @RestController
 @RequestMapping("/users")
