@@ -38,6 +38,7 @@ public class UserDetailsImpl implements UserDetails {
 		return new UserDetailsImpl(user.getId(), user.getUsername(), user.getPassword(), user.getEnabled(), authorities);	
 	}
 
+	
 	public Long getId() {
 		return id;
 	}
