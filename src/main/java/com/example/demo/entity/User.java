@@ -16,7 +16,7 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "users", catalog = "employee_management", uniqueConstraints = @UniqueConstraint(columnNames = "username"))
+@Table(name = "user", catalog = "employee_management", uniqueConstraints = @UniqueConstraint(columnNames = "username"))
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
