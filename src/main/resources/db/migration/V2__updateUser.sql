@@ -1,0 +1,1 @@
+INSERT INTO user(enabled, password, username) VALUES('1', '123', 'dinhtho');
