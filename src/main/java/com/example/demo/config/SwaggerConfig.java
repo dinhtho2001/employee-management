@@ -26,8 +26,7 @@ public class SwaggerConfig {
 
 	@Bean
 	Docket api() {
-		return new Docket(DocumentationType.SWAGGER_2)
-				.securityContexts(Arrays.asList(securityContext()))
+		return new Docket(DocumentationType.SWAGGER_2).securityContexts(Arrays.asList(securityContext()))
 				.securitySchemes(Arrays.asList(apiKey()))
 				.select()
 				.apis(RequestHandlerSelectors.any())
@@ -35,34 +34,14 @@ public class SwaggerConfig {
 				.build();
 	}
 
-//	private ApiInfo apiInfo() {
-//		return new ApiInfoBuilder().title("Employee API")
-//				.description("Employee API reference for developers")
-//				.terms 
-//	}
-
 	private ApiKey apiKey() {
 		return new ApiKey("JWT", AUTHORIZATION_HEADER, "header");
 	}
 
-//	 @SuppressWarnings("deprecation")
-//	private SecurityContext securityContext() {
-//	        return SecurityContext.builder()
-//	        		.securityReferences(List.of(basicAuthReference(), bearerAuthReference()))
-//	        		.forPaths(PathSelectors.any()).build();
-//	    }
-//	 
-//	    private SecurityReference basicAuthReference() {
-//	        return new SecurityReference(BASIC_AUTH, new AuthorizationScope[0]);
-//	    }
-//	 
-//	    private SecurityReference bearerAuthReference() {
-//	        return new SecurityReference(BEARER_AUTH, new AuthorizationScope[0]);
-//	    }
-	    
-	    private SecurityContext securityContext() {
-			return SecurityContext.builder().securityReferences(defaultAuth()).build();
-		}
+	private SecurityContext securityContext() {
+		return SecurityContext.builder().securityReferences(defaultAuth()).build();
+	}
+
 	private List<SecurityReference> defaultAuth() {
 		AuthorizationScope authorizationScope = new AuthorizationScope("global", "accessEverything");
 		AuthorizationScope[] authorizationScopes = new AuthorizationScope[1];
