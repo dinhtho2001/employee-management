@@ -2,7 +2,7 @@ package com.example.demo.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.example.demo.entity.Leave;
+import com.example.demo.model.entities.Leave;
 
 public interface LeaveRepository extends JpaRepository<Leave, Long>{
 	Leave findOneByLeaveId(Long leaveId);

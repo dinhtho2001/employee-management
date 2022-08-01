@@ -13,10 +13,10 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.config.jwt.JwtUtils;
+import com.example.demo.dto.UserDTO;
 import com.example.demo.dto.response.UserResponse;
-import com.example.demo.dto.user.UserDTO;
-import com.example.demo.entity.Role;
-import com.example.demo.entity.User;
+import com.example.demo.model.entities.Role;
+import com.example.demo.model.entities.User;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.service.IUserService;
 

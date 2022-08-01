@@ -2,7 +2,7 @@ package com.example.demo.dto.response;
 
 import java.util.List;
 
-import com.example.demo.dto.user.UserDTO;
+import com.example.demo.dto.UserDTO;
 
 public class UserResponse {
 

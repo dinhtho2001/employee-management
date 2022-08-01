@@ -1,4 +1,4 @@
-package com.example.demo.config;
+package com.example.demo.config.security;
 
 public class SecurityConstants {
 	public static final String SECRET = "SecretKeyToGenJWTs";

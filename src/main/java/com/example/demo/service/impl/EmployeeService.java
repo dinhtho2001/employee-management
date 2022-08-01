@@ -10,7 +10,7 @@ import org.springframework.data.domain.Pageable;
 import com.example.demo.converter.EmployeeConverter;
 import com.example.demo.dto.EmployeeDTO;
 import com.example.demo.dto.response.EmployeeResponse;
-import com.example.demo.entity.Employee;
+import com.example.demo.model.entities.Employee;
 import com.example.demo.repository.EmployeeRepository;
 import com.example.demo.service.IEmployeeService;
 
