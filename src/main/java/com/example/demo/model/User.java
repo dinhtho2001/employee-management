@@ -15,6 +15,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+
 @Entity
 @Table(name = "user", catalog = "employee_management", uniqueConstraints = @UniqueConstraint(columnNames = "username"))
 public class User {
@@ -29,7 +30,7 @@ public class User {
 	@Column(name = "password")
 	private String password;
 
-	@Column(name = "enabled", nullable = false, columnDefinition = "TINYINT(1)")
+	@Column(name = "enabled", nullable = false)
 	private Boolean enabled;
 
 	@ManyToMany(fetch = FetchType.EAGER)

@@ -1,2 +1,0 @@
-ALTER TABLE user
-  ADD image VARCHAR(50);
