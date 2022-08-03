@@ -3,7 +3,7 @@ package com.example.demo.converter;
 import org.springframework.stereotype.Component;
 
 import com.example.demo.dto.JobDepartmentDTO;
-import com.example.demo.model.entities.JobDepartment;
+import com.example.demo.model.JobDepartment;
 
 @Component
 public class JobDepartmentConverter {

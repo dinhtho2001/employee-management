@@ -3,7 +3,7 @@ package com.example.demo.converter;
 import org.springframework.stereotype.Component;
 
 import com.example.demo.dto.SalaryBonusDTO;
-import com.example.demo.model.entities.SalaryBonus;
+import com.example.demo.model.SalaryBonus;
 
 @Component
 public class SalaryBonusConverter {

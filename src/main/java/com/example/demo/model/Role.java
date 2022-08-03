@@ -1,4 +1,4 @@
-package com.example.demo.model.entities;
+package com.example.demo.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,7 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.example.demo.model.entities.enums.ERoles;
+import com.example.demo.model.enums.ERoles;
 
 @Entity
 @Table(name = "role", catalog = "employee_management")

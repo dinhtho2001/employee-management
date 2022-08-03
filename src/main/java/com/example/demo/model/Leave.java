@@ -1,4 +1,4 @@
-package com.example.demo.model.entities;
+package com.example.demo.model;
 
 import java.util.ArrayList;
 import java.util.Date;

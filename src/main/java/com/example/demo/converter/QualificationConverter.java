@@ -3,7 +3,7 @@ package com.example.demo.converter;
 import org.springframework.stereotype.Component;
 
 import com.example.demo.dto.QualificationDTO;
-import com.example.demo.model.entities.Qualification;
+import com.example.demo.model.Qualification;
 
 @Component
 public class QualificationConverter {

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import com.example.demo.converter.JobDepartmentConverter;
 import com.example.demo.dto.JobDepartmentDTO;
 import com.example.demo.dto.response.JobDepartmentResponse;
-import com.example.demo.model.entities.JobDepartment;
+import com.example.demo.model.JobDepartment;
 import com.example.demo.repository.JobDepartmentRepository;
 import com.example.demo.service.IJobDepartmentService;
 

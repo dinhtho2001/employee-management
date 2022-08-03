@@ -3,7 +3,7 @@ package com.example.demo.converter;
 import org.springframework.stereotype.Component;
 
 import com.example.demo.dto.LeaveDTO;
-import com.example.demo.model.entities.Leave;
+import com.example.demo.model.Leave;
 
 @Component
 public class LeaveConverter {

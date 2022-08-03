@@ -15,8 +15,8 @@ import org.springframework.stereotype.Service;
 import com.example.demo.config.jwt.JwtUtils;
 import com.example.demo.dto.UserDTO;
 import com.example.demo.dto.response.UserResponse;
-import com.example.demo.model.entities.Role;
-import com.example.demo.model.entities.User;
+import com.example.demo.model.Role;
+import com.example.demo.model.User;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.service.IUserService;
 

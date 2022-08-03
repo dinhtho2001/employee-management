@@ -1,4 +1,4 @@
-package com.example.demo.model.entities.enums;
+package com.example.demo.model.enums;
 
 public enum ERoles {
 	ROLE_SUPER_ADMIN,
