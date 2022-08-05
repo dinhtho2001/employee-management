@@ -11,6 +11,9 @@ public class JwtResponse {
 	private Boolean enabled;
 	private List<String> roles;
 	
+	public JwtResponse() {
+	}
+	
 	public JwtResponse(String token, String id, String username, Boolean enabled, List<String> roles) {
 		super();
 		this.token = token;

@@ -8,23 +8,21 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/")
 public class HomeController {
+	
 	@GetMapping()
-	public String home() {
-		
+	public String home() {		
 		return "Welcome";
 	}
 	
 	@GetMapping("/user")
 	@PreAuthorize("hasRole('ROLE_USER')")
-	public String user() {
-		
+	public String user() {		
 		return "user";
 	}
 	
 	@GetMapping("/admin")
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	public String admin() {
-		
+	public String admin() {		
 		return "admin";
 	}
 }

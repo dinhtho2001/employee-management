@@ -23,20 +23,17 @@ public class LeaveController {
 	private ILeaveService service;
 	
 	@GetMapping
-	public LeaveResponse all(@RequestParam("page") int page, @RequestParam("limit") int limit) {
-		
+	public LeaveResponse all(@RequestParam("page") int page, @RequestParam("limit") int limit) {		
 		return service.findAll(page, limit);
 	}
 	
 	@GetMapping(value="/{id}")
-	public LeaveDTO one(@PathVariable("id") Long id) {
-		
+	public LeaveDTO one(@PathVariable("id") Long id) {		
 		return service.findOne(id);
 	}
 	
 	@PostMapping
-	public LeaveDTO create(@RequestBody LeaveDTO dto ) {
-		
+	public LeaveDTO create(@RequestBody LeaveDTO dto ) {		
 		return service.create(dto);
 	}
 	
@@ -47,8 +44,7 @@ public class LeaveController {
 	}
 	
 	@DeleteMapping(value="/{id}")
-	public String delete(@PathVariable("id") Long id) {
-		
+	public String delete(@PathVariable("id") Long id) {		
 		return service.delete(id);
 	}
 }

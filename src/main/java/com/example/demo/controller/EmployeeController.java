@@ -26,14 +26,12 @@ public class EmployeeController {
 	@GetMapping
 	@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MODERATOR')")
 	public EmployeeResponse findAll(@RequestParam("page") int page, @RequestParam("limit") int limit) {
-		
 		return service.findAll(page, limit);
 	}
 	
 	@GetMapping(value="/{id}")
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public EmployeeDTO findById(@PathVariable("id") Long id) {
-		
 		return service.findOne(id);
 	}
 	
@@ -46,7 +44,6 @@ public class EmployeeController {
 	@PostMapping
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public EmployeeDTO create(@RequestBody EmployeeDTO dto ) {
-		
 		return service.create(dto);
 	}
 	
@@ -58,15 +55,13 @@ public class EmployeeController {
 	
 	@DeleteMapping(value="/{id}")
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	public String delete(@PathVariable("id") Long id) {
-		
+	public String delete(@PathVariable("id") Long id) {		
 		return service.delete(id);
 	}
 	
 	@DeleteMapping
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	public String deletes(@RequestBody Long[] ids) {
-		
+	public String deletes(@RequestBody Long[] ids) {		
 		return service.deletes(ids);
 	}
 	

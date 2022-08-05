@@ -9,6 +9,7 @@ public class LeaveResponse {
 	private int page;
 	private int totalPage;
 	private List<LeaveDTO> listResult = new ArrayList<>();
+	
 	public int getPage() {
 		return page;
 	}

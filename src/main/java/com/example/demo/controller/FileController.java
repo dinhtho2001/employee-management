@@ -2,8 +2,6 @@ package com.example.demo.controller;
 
 import java.io.IOException;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -25,8 +23,6 @@ import com.example.demo.service.IFileService;
 @RestController
 @RequestMapping("/api/file/")
 public class FileController {
-
-	private static final Logger logger = LoggerFactory.getLogger(FileController.class);
 
 	@Autowired
 	IFileService fileService;
@@ -50,7 +46,6 @@ public class FileController {
 		} catch (Exception e) {
 			return ResponseEntity.internalServerError().build();
 		}
-	
 		if (resource == null) {
             return new ResponseEntity<>("File not found", HttpStatus.NOT_FOUND);
         }

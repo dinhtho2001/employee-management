@@ -9,6 +9,18 @@ public class JobDepartmentResponse {
 	private int page;
 	private int totalPage;
 	private List<JobDepartmentDTO> listResult = new ArrayList<>();
+	
+	public JobDepartmentResponse() {
+		
+	}
+	
+	public JobDepartmentResponse(int page, int totalPage, List<JobDepartmentDTO> listResult) {
+		super();
+		this.page = page;
+		this.totalPage = totalPage;
+		this.listResult = listResult;
+	}
+	
 	public int getPage() {
 		return page;
 	}

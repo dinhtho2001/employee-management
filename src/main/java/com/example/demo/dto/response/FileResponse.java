@@ -7,6 +7,9 @@ public class FileResponse {
     private String fileType;
     private long size;
     
+    public FileResponse() {
+	}
+    
 	public FileResponse(String message, String fileName, String fileType, long size) {
 		super();
 		this.message = message;

@@ -21,20 +21,17 @@ public class QualificationController {
 	private IQualificationService service;
 	
 	@GetMapping(value="/qualifications")
-	public QualificationResponse all(@RequestParam("page") int page, @RequestParam("limit") int limit) {
-		
+	public QualificationResponse all(@RequestParam("page") int page, @RequestParam("limit") int limit) {		
 		return service.findAll(page, limit);
 	}
 	
 	@GetMapping(value="/qualification/{id}")
-	public QualificationDTO one(@PathVariable("id") Long id) {
-		
+	public QualificationDTO one(@PathVariable("id") Long id) {		
 		return service.findOne(id);
 	}
 	
 	@PostMapping(value="/qualification")
-	public QualificationDTO create(@RequestBody QualificationDTO dto ) {
-		
+	public QualificationDTO create(@RequestBody QualificationDTO dto ) {		
 		return service.create(dto);
 	}
 	
@@ -45,8 +42,7 @@ public class QualificationController {
 	}
 	
 	@DeleteMapping(value="/qualification/{id}")
-	public String delete(@PathVariable("id") Long id) {
-		
+	public String delete(@PathVariable("id") Long id) {		
 		return service.delete(id);
 	}
 }
