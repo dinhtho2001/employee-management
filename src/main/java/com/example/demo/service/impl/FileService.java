@@ -38,8 +38,8 @@ public class FileService implements IFileService {
 
 	private Path foundFile;
 	
-	@Value("classpath:asset")
-	Resource resource;
+	@Value("${file.upload-dir}")
+	private Resource resource;
 	
 	@Override
 	public void saveFile(String fileName, MultipartFile multipartFile) throws IOException {
