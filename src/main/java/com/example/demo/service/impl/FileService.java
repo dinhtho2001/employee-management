@@ -45,7 +45,6 @@ public class FileService implements IFileService {
 	public void saveFile(String fileName, MultipartFile multipartFile) throws IOException {
 		URI uri = resource.getURI();
 		Path uploadPath = Paths.get(uri);
-		System.out.print("okok "+uploadPath);
 		if (!Files.exists(uploadPath)) {
 			Files.createDirectories(uploadPath);
 		}

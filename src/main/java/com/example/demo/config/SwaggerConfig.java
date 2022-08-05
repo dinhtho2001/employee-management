@@ -21,8 +21,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 public class SwaggerConfig {
 
 	private static final String AUTHORIZATION_HEADER = "Authorization";
-	private static final String BASIC_AUTH = "basicAuth";
-	private static final String BEARER_AUTH = "Bearer";
 
 	@Bean
 	Docket api() {

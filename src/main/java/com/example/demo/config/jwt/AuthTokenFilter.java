@@ -21,7 +21,7 @@ import com.example.demo.service.userdetail.UserDetailsServiceImpl;
 
 
 public class AuthTokenFilter extends OncePerRequestFilter{
-
+	private static final String BEARER_AUTH = "Bearer";
 	@Autowired
 	private JwtUtils jwtUtils;
 	@Autowired
@@ -54,7 +54,7 @@ public class AuthTokenFilter extends OncePerRequestFilter{
 	
 	private String getToken(HttpServletRequest request) {
 		String headerAuth = request.getHeader("Authorization");
-		if (StringUtils.hasText(headerAuth) && headerAuth.startsWith("Bearer")) {
+		if (StringUtils.hasText(headerAuth) && headerAuth.startsWith(BEARER_AUTH)) {
 			return headerAuth.substring(7, headerAuth.length());
 		}
 		return headerAuth;
