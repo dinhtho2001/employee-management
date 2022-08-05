@@ -21,16 +21,16 @@ import javax.persistence.UniqueConstraint;
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id", unique = true, nullable = false)
+	@Column(name = "id")
 	private Long id;
 
-	@Column(name = "username", unique = true, length = 45)
+	@Column(name = "username")
 	private String username;
 
 	@Column(name = "password")
 	private String password;
 
-	@Column(name = "enabled", nullable = false)
+	@Column(name = "enabled")
 	private Boolean enabled;
 
 	@ManyToMany(fetch = FetchType.EAGER)

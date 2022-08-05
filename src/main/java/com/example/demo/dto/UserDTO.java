@@ -2,15 +2,27 @@ package com.example.demo.dto;
 
 public class UserDTO {
 
-	private Integer id;
+	private Long id;
 	private String username;
-	private String password;
 	private Boolean enabled;
 	
-	public Integer getId() {
+	
+
+	public UserDTO() {
+		
+	}
+
+	public UserDTO(Long id, String username, Boolean enabled) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.enabled = enabled;
+	}
+	
+	public Long getId() {
 		return id;
 	}
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public String getUsername() {
@@ -18,12 +30,6 @@ public class UserDTO {
 	}
 	public void setUsername(String username) {
 		this.username = username;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
 	}
 	public Boolean getEnabled() {
 		return enabled;

@@ -77,7 +77,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         .antMatchers("/webjars/springfox-swagger-ui/**")
         .antMatchers("/swagger-resources/**")
         .antMatchers("/v2/api-docs");
-		super.configure(web);
+		//super.configure(web);
 	}
 	
 	@Bean
