@@ -11,6 +11,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import lombok.Data;
+
+@Data
 @Entity
 @Table (name = "payroll")
 public class Payroll {
@@ -44,74 +47,5 @@ public class Payroll {
 	
 	@Column(name = "total_amount")
 	private Double totalAmount;
-
-	public Long getPayrollId() {
-		return payrollId;
-	}
-
-	public void setPayrollId(Long payrollId) {
-		this.payrollId = payrollId;
-	}
-
-
-
-	public Employee getEmployeeId() {
-		return employeeId;
-	}
-
-	public void setEmployeeId(Employee employeeId) {
-		this.employeeId = employeeId;
-	}
-
-	public JobDepartment getJobDepartmentId() {
-		return jobDepartmentId;
-	}
-
-	public void setJobDepartmentId(JobDepartment jobDepartmentId) {
-		this.jobDepartmentId = jobDepartmentId;
-	}
-
-	public SalaryBonus getSalaryBonusId() {
-		return salaryBonusId;
-	}
-
-	public void setSalaryBonusId(SalaryBonus salaryBonusId) {
-		this.salaryBonusId = salaryBonusId;
-	}
-
-	public Leave getLeaveId() {
-		return leaveId;
-	}
-
-	public void setLeaveId(Leave leaveId) {
-		this.leaveId = leaveId;
-	}
-
-	public Date getDate() {
-		return date;
-	}
-
-	public void setDate(Date date) {
-		this.date = date;
-	}
-
-	public String getReport() {
-		return report;
-	}
-
-	public void setReport(String report) {
-		this.report = report;
-	}
-
-	public Double getTotalAmount() {
-		return totalAmount;
-	}
-
-	public void setTotalAmount(Double totalAmount) {
-		this.totalAmount = totalAmount;
-	}
-	
-	
-
 	
 }

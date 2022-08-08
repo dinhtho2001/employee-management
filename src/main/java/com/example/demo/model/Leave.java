@@ -14,6 +14,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import lombok.Data;
+
+@Data
 @Entity
 @Table(name = "empleave")
 public class Leave {
@@ -35,45 +38,5 @@ public class Leave {
 	
 	@OneToMany(mappedBy = "leaveId")
 	private List<Payroll> payrolls = new ArrayList<>();
-
-	public Long getLeaveId() {
-		return leaveId;
-	}
-
-	public void setLeaveId(Long leaveId) {
-		this.leaveId = leaveId;
-	}
-	
-	public Employee getEmployeeId() {
-		return employeeId;
-	}
-
-	public void setEmployeeId(Employee employeeId) {
-		this.employeeId = employeeId;
-	}
-
-	public Date getDate() {
-		return date;
-	}
-
-	public void setDate(Date date) {
-		this.date = date;
-	}
-
-	public String getReason() {
-		return reason;
-	}
-
-	public void setReason(String reason) {
-		this.reason = reason;
-	}
-
-	public List<Payroll> getPayrolls() {
-		return payrolls;
-	}
-
-	public void setPayrolls(List<Payroll> payrolls) {
-		this.payrolls = payrolls;
-	}
 
 }

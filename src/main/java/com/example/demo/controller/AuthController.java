@@ -39,7 +39,8 @@ public class AuthController {
 	public ResponseEntity<?> signin(@RequestBody LoginRequest loginRequest) {
 		JwtResponse jwtResponse = authService.signin(loginRequest);
 		if (jwtResponse != null) {
-			return new ResponseEntity<>(jwtResponse, HttpStatus.OK);
+			//return ResponseEntity.ok(jwtResponse);
+			return ResponseEntity.status(HttpStatus.OK).header("headers", "header").body(jwtResponse);
 		} else {
 			return new ResponseEntity<>("not found", HttpStatus.BAD_REQUEST);
 		}
@@ -48,9 +49,9 @@ public class AuthController {
 	@PostMapping("/signup")
 	public ResponseEntity<?> signup(@RequestBody SignupRequest signupRequest) {
 		if (authService.signup(signupRequest) != null) {
-			return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+			return ResponseEntity.ok("User registered successfully!");
 		} else {
-			return ResponseEntity.badRequest().body(new MessageResponse("Error: Username is already taken!"));
+			return ResponseEntity.badRequest().body("Error: Username is already taken!");
 		}
 	}
 

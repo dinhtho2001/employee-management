@@ -34,7 +34,11 @@ public class FileController {
 		long size = multipartFile.getSize();
 		String fileType = multipartFile.getContentType();
 		fileService.saveFile(fileName,multipartFile);
-		FileResponse response = new FileResponse("Access", fileName, fileType, size);
+		FileResponse response = new FileResponse();
+		response.setMessage("Access");
+		response.setFileName(fileName);
+		response.setFileType(fileType);
+		response.setSize(size);
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 

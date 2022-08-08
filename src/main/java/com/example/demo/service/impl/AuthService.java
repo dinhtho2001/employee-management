@@ -62,9 +62,13 @@ public class AuthService implements IAuthService {
 		UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
 		List<String> roles = userDetails.getAuthorities().stream().map(item -> item.getAuthority())
 				.collect(Collectors.toList());
-		return new JwtResponse
-				(token, userDetails.getId().toString(), userDetails.getUsername(),
-				userDetails.getEnabled(), roles);
+		JwtResponse response = new JwtResponse();
+		response.setToken(token);
+		response.setId(userDetails.getId().toString());
+		response.setUsername(userDetails.getUsername());
+		response.setEnabled(userDetails.getEnabled());
+		response.setRoles(roles);
+		return response;
 	}
 
 	@Override
@@ -74,8 +78,10 @@ public class AuthService implements IAuthService {
 			return userDTO;
 		}
 		else {
-			User user = new User(signupRequest.getUsername(), encoder.encode(signupRequest.getPassword()),
-					signupRequest.getEnabled());
+			User user = new User();
+			user.setUsername(signupRequest.getUsername());
+			user.setPassword(signupRequest.getPassword());
+			user.setEnabled(signupRequest.getEnabled());
 			Set<String> strRoles = signupRequest.getRole();
 			Set<Role> roles = new HashSet<>();
 			if (strRoles == null) {

@@ -11,6 +11,9 @@ import javax.persistence.Table;
 
 import com.example.demo.model.enums.ERoles;
 
+import lombok.Data;
+
+@Data
 @Entity
 @Table(name = "role", catalog = "employee_management")
 public class Role {
@@ -23,28 +26,5 @@ public class Role {
 	@Enumerated(EnumType.STRING)
 	@Column(name = "name", length = 20)
 	private ERoles name;
-
-	public Role() {
-	}
-	
-	public Role(ERoles name) {
-		this.name = name;
-	}
-	
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public ERoles getName() {
-		return name;
-	}
-
-	public void setName(ERoles name) {
-		this.name = name;
-	}
 
 }
