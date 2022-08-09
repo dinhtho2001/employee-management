@@ -15,24 +15,24 @@ import com.example.demo.service.IUserService;
 @RequestMapping("/api/users")
 public class UserController {
 	
-	@Autowired
-	private IUserService service;
-	
-	@GetMapping
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	public ResponseEntity<?> findAll() {
-		return ResponseEntity.status(HttpStatus.OK).body(service.findAll());
-	}
-	
-	@GetMapping("/{id}")
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	public ResponseEntity<?> findById(@PathVariable("id") Long id) {
-		return ResponseEntity.status(HttpStatus.OK).body(service.findById(id));
-	}
-	
-	@GetMapping("/image/{id}")
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	public ResponseEntity<?> findImageById(@PathVariable("id") Long id) {
-		return ResponseEntity.status(HttpStatus.OK).body(service.findById(id));
-	}
+//	@Autowired
+//	private IUserService service;
+//	
+//	@GetMapping
+//	@PreAuthorize("hasRole('ROLE_ADMIN')")
+//	public ResponseEntity<?> findAll() {
+//		return ResponseEntity.status(HttpStatus.OK).body(service.findAll());
+//	}
+//	
+//	@GetMapping("/{id}")
+//	@PreAuthorize("hasRole('ROLE_ADMIN')")
+//	public ResponseEntity<?> findById(@PathVariable("id") Long id) {
+//		return ResponseEntity.status(HttpStatus.OK).body(service.findById(id));
+//	}
+//	
+//	@GetMapping("/image/{id}")
+//	@PreAuthorize("hasRole('ROLE_ADMIN')")
+//	public ResponseEntity<?> findImageById(@PathVariable("id") Long id) {
+//		return ResponseEntity.status(HttpStatus.OK).body(service.findById(id));
+//	}
 }

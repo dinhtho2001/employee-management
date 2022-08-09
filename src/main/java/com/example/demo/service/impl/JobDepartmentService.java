@@ -8,7 +8,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.converter.JobDepartmentConverter;
 import com.example.demo.dto.JobDepartmentDTO;
 import com.example.demo.dto.response.JobDepartmentResponse;
 import com.example.demo.model.JobDepartment;
@@ -20,8 +19,6 @@ public class JobDepartmentService implements IJobDepartmentService{
 	@Autowired
 	private JobDepartmentRepository repository;
 
-	@Autowired
-	private JobDepartmentConverter converter ;
 	
 	@Override
 	public JobDepartmentResponse findAll(int page, int limit) {
@@ -41,22 +38,22 @@ public class JobDepartmentService implements IJobDepartmentService{
 	@Override
 	public JobDepartmentDTO findOne(Long id) {
 		JobDepartment department = repository.findById(id).orElse(null);		 
-		return converter.toDTO(department);
+		return null /* converter.toDTO(department) */;
 	}
 
 	@Override
 	public JobDepartmentDTO create(JobDepartmentDTO employeeDTO) {
-		JobDepartment jobDepartment = converter.toEntity(employeeDTO);
-		JobDepartment result = repository.save(jobDepartment);
-		return converter.toDTO(result);
+		//JobDepartment jobDepartment = converter.toEntity(employeeDTO);
+		//JobDepartment result = repository.save(jobDepartment);
+		return null /* converter.toDTO(result) */;
 	}
 
 	@Override
 	public JobDepartmentDTO update(JobDepartmentDTO employeeDTO) {
 		JobDepartment jobDepartment = repository.findById(employeeDTO.getJobId()).orElse(null);
-		JobDepartment entiti = converter.toEntity(employeeDTO, jobDepartment);
-		entiti = repository.save(entiti);
-		return converter.toDTO(entiti);
+		//JobDepartment entiti = converter.toEntity(employeeDTO, jobDepartment);
+		//entiti = repository.save(entiti);
+		return null /* converter.toDTO(entiti) */;
 	}
 
 	@Override
@@ -69,8 +66,8 @@ public class JobDepartmentService implements IJobDepartmentService{
 		List<JobDepartmentDTO> departmentDTOs = new ArrayList<>();
 		List<JobDepartment> jobDepartments = repository.findAll(pageable).getContent();
 		for(JobDepartment item : jobDepartments) {
-			JobDepartmentDTO dto = converter.toDTO(item);
-			departmentDTOs.add(dto);
+			//JobDepartmentDTO dto = converter.toDTO(item);
+			//departmentDTOs.add(dto);
 		}
 		return departmentDTOs;
 	}

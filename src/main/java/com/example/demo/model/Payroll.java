@@ -33,7 +33,7 @@ public class Payroll {
 	
 	@ManyToOne
 	@JoinColumn(name = "salary_id")
-	private SalaryBonus salaryBonusId;
+	private Salary salaryBonusId;
 	
 	@ManyToOne
 	@JoinColumn(name = "leave_id")

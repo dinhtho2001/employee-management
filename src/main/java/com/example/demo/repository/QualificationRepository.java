@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.example.demo.model.Qualification;
 
-public interface QualificationRepository extends JpaRepository<Qualification, Long>{
+public interface QualificationRepository  extends JpaRepository<Qualification, Long> {
 
 }

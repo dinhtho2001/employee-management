@@ -2,7 +2,7 @@ package com.example.demo.dto.response;
 
 import java.util.List;
 
-import com.example.demo.dto.UserDTO;
+import com.example.demo.dto.EmployeeDTO;
 
 import lombok.Data;
 
@@ -10,7 +10,7 @@ import lombok.Data;
 public class UserResponse {
 
 	private String message;
-	private List<UserDTO> data;
+	private List<EmployeeDTO> data;
 	private String status;
 
 }

@@ -2,7 +2,6 @@ package com.example.demo.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,15 +15,15 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table (name = "jobdepartment")
+@Table (name = "job_department")
 public class JobDepartment {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "jop_id")
+	@Column(name = "job_id")
 	private Long jobId;
 	
-	@Column(name = "jop_dept")
+	@Column(name = "job_dept")
 	private String jopDept;
 	
 	@Column(name = "name")
@@ -34,10 +33,10 @@ public class JobDepartment {
 	private String description;
 	
 	@Column(name = "salary_range")
-	private String salaryRange;
+	private Float salaryRange;
 	
 	@OneToMany(mappedBy = "jobDepartmentId")
-	private List<SalaryBonus> salaryBonus = new ArrayList<>();
+	private List<Salary> salaryBonus = new ArrayList<>();
 
 	@OneToMany(mappedBy = "jobDepartmentId")
 	private List<Payroll>  payrolls= new ArrayList<>();

@@ -8,11 +8,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.converter.SalaryBonusConverter;
 import com.example.demo.dto.SalaryBonusDTO;
 import com.example.demo.dto.response.SalaryBonusResponse;
 import com.example.demo.model.JobDepartment;
-import com.example.demo.model.SalaryBonus;
+import com.example.demo.model.Salary;
 import com.example.demo.repository.JobDepartmentRepository;
 import com.example.demo.repository.SalaryBonusRepository;
 import com.example.demo.service.ISalaryBonusService;
@@ -25,9 +24,6 @@ public class SalaryBonusService implements ISalaryBonusService{
 
 	@Autowired
 	private JobDepartmentRepository  jobDepartmentRepository;
-	
-	@Autowired
-	private SalaryBonusConverter converter ;
 	
 	@Override
 	public SalaryBonusResponse findAll(int page, int limit) {
@@ -46,17 +42,19 @@ public class SalaryBonusService implements ISalaryBonusService{
 
 	@Override
 	public SalaryBonusDTO findOne(Long id) {
-		SalaryBonus salaryBonus = salaryBonusRepository.findById(id).orElse(null);		
-		return converter.toDTO(salaryBonus);
+		Salary salary = salaryBonusRepository.findById(id).orElse(null);		
+		//return converter.toDTO(salary);
+		return null;
 	}
 
 	@Override
 	public SalaryBonusDTO create(SalaryBonusDTO dto) {
 		JobDepartment jobDepartment = jobDepartmentRepository.findOneByJobId(dto.getJob_id());
-		SalaryBonus salaryBonus = converter.toEntity(dto);
-		salaryBonus.setJobDepartmentId(jobDepartment);
-		SalaryBonus entiti = salaryBonusRepository.save(salaryBonus);
-		return converter.toDTO(entiti);
+		//Salary salaryBonus = converter.toEntity(dto);
+		///salaryBonus.setJobDepartmentId(jobDepartment);
+		//Salary entiti = salaryBonusRepository.save(salaryBonus);
+		//return converter.toDTO(entiti);
+		return null;
 	}
 
 	@Override
@@ -72,13 +70,13 @@ public class SalaryBonusService implements ISalaryBonusService{
 	}
 	
 	public List<SalaryBonusDTO> findAll(Pageable pageable){		
-		List<SalaryBonusDTO> salaryBonusDTOs = new ArrayList<>();
-		List<SalaryBonus> salaryBonus = salaryBonusRepository.findAll(pageable).getContent();
-		for(SalaryBonus item : salaryBonus) {
-			SalaryBonusDTO dto = converter.toDTO(item);
-			salaryBonusDTOs.add(dto);
+		List<SalaryBonusDTO> salaryDTOs = new ArrayList<>();
+		List<Salary> salary = salaryBonusRepository.findAll(pageable).getContent();
+		for(Salary item : salary) {
+			//SalaryBonusDTO dto = converter.toDTO(item);
+			//salaryDTOs.add(dto);
 		}
-		return salaryBonusDTOs;
+		return salaryDTOs;
 	}
 
 }

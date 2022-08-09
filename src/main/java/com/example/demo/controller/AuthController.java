@@ -13,10 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.dto.request.LoginRequest;
 import com.example.demo.dto.request.SignupRequest;
 import com.example.demo.dto.response.JwtResponse;
-import com.example.demo.dto.response.MessageResponse;
 import com.example.demo.repository.RoleRepository;
-import com.example.demo.repository.UserRepository;
-import com.example.demo.service.impl.AuthService;
+import com.example.demo.service.IAuthService;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -24,10 +22,7 @@ import com.example.demo.service.impl.AuthService;
 public class AuthController {
 
 	@Autowired
-	AuthService authService;
-
-	@Autowired
-	UserRepository userRepository;
+	IAuthService authService;
 	
 	@Autowired
 	RoleRepository roleRepository;

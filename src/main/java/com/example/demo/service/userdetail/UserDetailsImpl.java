@@ -9,7 +9,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.example.demo.model.User;
+import com.example.demo.model.Employee;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class UserDetailsImpl implements UserDetails {
@@ -23,32 +23,28 @@ public class UserDetailsImpl implements UserDetails {
 	@JsonIgnore
 	private String password;
 	
-	private Boolean enabled;
-	
 	private Collection<? extends GrantedAuthority> authorities;
 	
-	public UserDetailsImpl(Long id, String username, String password, Boolean enabled,
+	public UserDetailsImpl(Long id, String username, String password,
 			Collection<? extends GrantedAuthority> authorities) {
 		this.id = id;
 		this.username = username;
 		this.password = password;
-		this.enabled = enabled;
 		this.authorities = authorities;
 	}
 
-	public static UserDetailsImpl build(User user) {
+	public static UserDetailsImpl build(Employee user) {
 		List<GrantedAuthority> authorities = user.getRoles().stream()
 				.map(role -> new SimpleGrantedAuthority(role.getName().name())).collect(Collectors.toList());
-		return new UserDetailsImpl(user.getId(), user.getUsername(), user.getPassword(), user.getEnabled(), authorities);	
+		UserDetailsImpl detailsImpl = new UserDetailsImpl(user.getEmpId(), user.getEmpEmail(), user.getEmpPass(), authorities);
+		return detailsImpl;	
 	}
 
 	
 	public Long getId() {
 		return id;
 	}
-	public Boolean getEnabled() {
-		return enabled;
-	}
+	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return authorities;

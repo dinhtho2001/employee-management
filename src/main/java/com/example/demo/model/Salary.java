@@ -17,8 +17,8 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table (name = "salarybonus")
-public class SalaryBonus {
+@Table (name = "salary")
+public class Salary {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,10 +30,10 @@ public class SalaryBonus {
 	private JobDepartment jobDepartmentId;
 	
 	@Column(name = "amount")
-	private Double amount;
+	private Integer amount;
 	
 	@Column(name = "anual")
-	private String anual;
+	private Integer anual;
 	
 	@Column(name = "bonus")
 	private Double bonus;

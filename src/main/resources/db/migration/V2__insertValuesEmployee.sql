@@ -1,0 +1,2 @@
+INSERT INTO employee(fname, lname, gender, age, contact_add, emp_email, emp_pass) VALUES('Văn A', 'Nguyễn', true, '2001-01-01', '0123456789', 'admin@gmail.com','$2y$10$MaNoWetQS.CT8tugH4U4guSkaiVJs0CkjpuwWkdOsK1FyzjNcTRTW');
+INSERT INTO employee(fname, lname, gender, age, contact_add, emp_email, emp_pass) VALUES('Văn B', 'Nguyễn', false, '2001-01-01', '0123456789', 'user@gmail.com','$2y$10$MaNoWetQS.CT8tugH4U4guSkaiVJs0CkjpuwWkdOsK1FyzjNcTRTW');

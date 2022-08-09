@@ -1,6 +1,6 @@
 package com.example.demo.dto.response;
 
-import com.example.demo.dto.UserDTO;
+import com.example.demo.dto.EmployeeDTO;
 
 import lombok.Data;
 
@@ -8,6 +8,6 @@ import lombok.Data;
 public class ErrorResponse {
 
 	private String message;
-	private UserDTO sysError;
+	private EmployeeDTO sysError;
 
 }

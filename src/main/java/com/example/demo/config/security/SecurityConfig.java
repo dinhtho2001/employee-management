@@ -23,8 +23,6 @@ import com.example.demo.service.userdetail.UserDetailsServiceImpl;
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(
-		// securedEnabled = true,
-		// jsr250Enabled = true,
 		prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
@@ -77,7 +75,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         .antMatchers("/webjars/springfox-swagger-ui/**")
         .antMatchers("/swagger-resources/**")
         .antMatchers("/v2/api-docs");
-		//super.configure(web);
 	}
 	
 	@Bean
