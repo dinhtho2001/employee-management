@@ -25,18 +25,23 @@ public class FileService implements IFileService {
 	private Resource resource;
 
 	@Override
-	public void saveFile(String fileName, MultipartFile multipartFile) throws IOException {
-		URI uri = resource.getURI();
-		Path uploadPath = Paths.get(uri);
-		if (!Files.exists(uploadPath)) {
-			Files.createDirectories(uploadPath);
-		}
-		try (InputStream inputStream = multipartFile.getInputStream()) {
-			Path filePath = uploadPath.resolve(fileName);
-			Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
-		} catch (IOException e) {
+	public Boolean saveFile(String fileName, MultipartFile multipartFile) throws IOException {
+		try {
+			URI uri = resource.getURI();
+			Path uploadPath = Paths.get(uri);
+			if (!Files.exists(uploadPath)) {
+				Files.createDirectories(uploadPath);
+			}
+			try (InputStream inputStream = multipartFile.getInputStream()) {
+				Path filePath = uploadPath.resolve(fileName);
+				Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
+				return true;
+			}catch (IOException e) {
+				throw new IOException("Could not save file: " + fileName, e);
+			}
+		} catch (Exception e) {
 			throw new IOException("Could not save file: " + fileName, e);
-		}
+		} 
 	}
 
 	@Override

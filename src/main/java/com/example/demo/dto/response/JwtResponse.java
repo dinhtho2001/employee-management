@@ -9,8 +9,8 @@ public class JwtResponse {
 
 	private String token;
 	private String type = "Bearer";
-	private String id;
+	private Integer id;
 	private String username;
-	private Boolean enabled;
 	private List<String> roles;
+	
 }

@@ -62,9 +62,9 @@ public class AuthService implements IAuthService {
 		UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
 		List<String> roles = userDetails.getAuthorities().stream().map(item -> item.getAuthority())
 				.collect(Collectors.toList());
-		JwtResponse response = new JwtResponse();
+		JwtResponse response = new JwtResponse();;
 		response.setToken(token);
-		response.setId(userDetails.getId().toString());
+		response.setId(Integer.parseInt(userDetails.getId().toString()));
 		response.setUsername(userDetails.getUsername());
 		response.setRoles(roles);
 		return response;
@@ -90,7 +90,7 @@ public class AuthService implements IAuthService {
 			} else {
 				strRoles.forEach(role -> {
 					switch (role) {
-					case "admin":
+					case "ROLE_ADMIN":
 						Role adminRole = roleRepository.findByName(ERoles.ROLE_ADMIN)
 								.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
 						roles.add(adminRole);

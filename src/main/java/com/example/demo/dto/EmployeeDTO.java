@@ -19,8 +19,6 @@ public class EmployeeDTO {
 	
 	private String contactAdd;
 	
-	private String empEmail;
-	
-	private String empPass;
+	private String empEmail;	
 
 }

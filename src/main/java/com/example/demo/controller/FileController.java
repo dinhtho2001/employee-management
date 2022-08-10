@@ -28,18 +28,20 @@ public class FileController {
 	IFileService fileService;
 
 	@PostMapping("/uploadFile")
-	public ResponseEntity<FileResponse> uploadFile(@RequestParam("File") MultipartFile multipartFile)
+	public ResponseEntity<?> uploadFile(@RequestParam("file") MultipartFile multipartFile)
 			throws IOException {
 		String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
-		long size = multipartFile.getSize();
-		String fileType = multipartFile.getContentType();
-		fileService.saveFile(fileName,multipartFile);
-		FileResponse response = new FileResponse();
-		response.setMessage("Access");
-		response.setFileName(fileName);
-		response.setFileType(fileType);
-		response.setSize(size);
-		return new ResponseEntity<>(response, HttpStatus.OK);
+		if(fileService.saveFile(fileName,multipartFile)) {
+			FileResponse response = new FileResponse();
+			response.setMessage("Access");
+			response.setFileName(fileName);
+			response.setFileType(multipartFile.getContentType());
+			response.setSize(multipartFile.getSize());
+			return ResponseEntity.ok(response);
+		}else {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+		}
+
 	}
 
 	@GetMapping("/downloadFile/{fileName}")
