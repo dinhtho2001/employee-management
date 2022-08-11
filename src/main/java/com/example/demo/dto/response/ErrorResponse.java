@@ -1,13 +1,15 @@
 package com.example.demo.dto.response;
 
-import com.example.demo.dto.EmployeeDTO;
-
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class ErrorResponse {
 
 	private String message;
-	private EmployeeDTO sysError;
+	private String sysError;
 
 }

@@ -16,10 +16,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
 import com.example.demo.dto.EmployeeDTO;
 import com.example.demo.dto.response.EmployeeResponse;
@@ -122,24 +120,24 @@ public class EmployeeService implements IEmployeeService {
 	}
 
 	@Override
-	public String delete(Long id) {
+	public Boolean delete(Long id) {
 		try {
 			repository.deleteById(id);
-			return "Delete success";
+			return true;
 		} catch (Exception e) {
-			return "Delete failed";
+			return false;
 		}
 	}
 
 	@Override
-	public String deletes(Long[] ids) {
+	public Boolean deletes(Long[] ids) {
 		try {
 			for (long item : ids) {
 				repository.deleteById(item);
 			}
-			return "Delete success";
+			return true;
 		} catch (Exception e) {
-			return "Delete failed";
+			return false;
 		}
 	}
 

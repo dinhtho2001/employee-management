@@ -1,26 +1,10 @@
 package com.example.demo.controller;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 
 import org.apache.poi.EncryptedDocumentException;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.DataFormatter;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.ss.usermodel.WorkbookFactory;
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -37,13 +21,11 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.dto.EmployeeDTO;
-import com.example.demo.dto.response.EmployeeResponse;
-import com.example.demo.model.Employee;
 import com.example.demo.service.IEmployeeService;
 import com.example.demo.service.IFileService;
 
 @RestController
-@RequestMapping("/employees")
+@RequestMapping("/api/employees")
 public class EmployeeController {
 
 	@Autowired
@@ -52,44 +34,48 @@ public class EmployeeController {
 	@Autowired
 	private IFileService fileService;
 
-	@Value("${file.upload-dir}")
-	private Resource resource;
-
 	@GetMapping
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	public EmployeeResponse findAll(@RequestParam("page") int page, @RequestParam("limit") int limit) {
-		return service.findAll(page, limit);
+	public ResponseEntity<?> findAll(@RequestParam("page") int page, @RequestParam("limit") int limit) {
+		return ResponseEntity.ok(service.findAll(page, limit));
 	}
 
 	@GetMapping("/{id}")
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	public EmployeeDTO findById(@PathVariable("id") Long id) {
-		return service.findOne(id);
+	public ResponseEntity<?> findById(@PathVariable("id") Long id) {
+		return ResponseEntity.ok(service.findOne(id));
 	}
 
 	@PostMapping
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	public EmployeeDTO create(@RequestBody EmployeeDTO dto) {
-		return service.create(dto);
+	public ResponseEntity<?> createEmployee(@RequestBody EmployeeDTO dto) {
+		return ResponseEntity.ok(service.create(dto));
 	}
 
 	@PutMapping("/{id}")
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	public EmployeeDTO update(@RequestBody EmployeeDTO dto, @PathVariable("id") Long id) {
+	public ResponseEntity<?> updateById(@RequestBody EmployeeDTO dto, @PathVariable("id") Long id) {
 		dto.setEmpId(id);
-		return service.update(dto);
+		return ResponseEntity.ok(service.update(dto));
 	}
 
 	@DeleteMapping("/{id}")
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	public String delete(@PathVariable("id") Long id) {
-		return service.delete(id);
+	public ResponseEntity<?> deleteById(@PathVariable("id") Long id) {
+		if(service.delete(id)) {
+			return ResponseEntity.ok("Success");
+		}
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("False");
+		
 	}
 
 	@DeleteMapping
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	public String deletes(@RequestBody Long[] ids) {
-		return service.deletes(ids);
+	public ResponseEntity<?> deletesById(@RequestBody Long[] ids) {
+		if(service.deletes(ids)) {
+			return ResponseEntity.ok("Success");
+		}
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("False");
 	}
 
 	@PostMapping("/readexcel")

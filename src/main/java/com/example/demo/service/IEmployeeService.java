@@ -13,8 +13,8 @@ public interface IEmployeeService {
 	EmployeeDTO[] creates (EmployeeDTO[] dtos);
 	EmployeeDTO create(EmployeeDTO dto);
 	EmployeeDTO update(EmployeeDTO dto);
-	String delete(Long id);
-	String deletes(Long[] ids);
+	Boolean delete(Long id);
+	Boolean deletes(Long[] ids);
 	
 	Boolean saveEmployeesToExcel(String fileName)throws IOException;
 }
