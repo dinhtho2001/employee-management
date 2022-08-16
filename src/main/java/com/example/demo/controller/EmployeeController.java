@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.dto.EmployeeDTO;
+import com.example.demo.dto.request.UpdateRoleRequest;
 import com.example.demo.service.IEmployeeService;
 import com.example.demo.service.IFileService;
 
@@ -44,6 +45,15 @@ public class EmployeeController {
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public ResponseEntity<?> findById(@PathVariable("id") Long id) {
 		return ResponseEntity.ok(service.findOne(id));
+	}
+	
+	@PutMapping("/update-role")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	public ResponseEntity<?> updateRole(@RequestBody UpdateRoleRequest request) {
+		if (service.updateRole(request)) {
+			return ResponseEntity.ok("Success");
+		}
+		return ResponseEntity.ok("false");
 	}
 
 	@PostMapping

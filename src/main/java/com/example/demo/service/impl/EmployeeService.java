@@ -4,7 +4,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Row;
@@ -20,8 +22,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dto.EmployeeDTO;
+import com.example.demo.dto.request.UpdateRoleRequest;
 import com.example.demo.dto.response.EmployeeResponse;
 import com.example.demo.model.Employee;
+import com.example.demo.model.Role;
 import com.example.demo.repository.EmployeeRepository;
 import com.example.demo.service.IEmployeeService;
 
@@ -188,6 +192,33 @@ public class EmployeeService implements IEmployeeService {
 			employees.add(employee);
 		}
 		return employees;
+	}
+
+	@Override
+	public Boolean updateRole(UpdateRoleRequest request) {
+		try {
+			Employee employee = new Employee();
+			employee = repository.findOneByEmpId(request.getId());
+			if(employee == null) {
+				return false;
+			}else {
+				Role role = new Role();
+				role.setName(request.getRole());
+				Set<Role> roles = new HashSet<>();
+				roles.add(role);
+				employee.setRoles(roles);
+				
+				Employee result = repository.save(employee);
+				if(result == null) {
+					return false;
+				}else {
+					return true;
+				}				
+			}
+		} catch (Exception e) {
+			return false;
+		}
+//		return false;
 	}
 
 }

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.dto.RoleDTO;
 import com.example.demo.dto.response.ErrorResponse;
 import com.example.demo.dto.response.RoleResponse;
+import com.example.demo.exception.SysError;
 import com.example.demo.service.IRoleService;
 
 @RestController
@@ -63,7 +64,7 @@ public class RoleController {
 		if (response != null) {
 			return ResponseEntity.ok(response);
 		}
-		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse("false","not-found"));
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse("Bad Request",new SysError()));
 	}
 
 	@DeleteMapping("/{id}")

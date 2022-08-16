@@ -1,8 +1,5 @@
 package com.example.demo.dto.request;
 
-import java.util.Date;
-import java.util.Set;
-
 import lombok.Data;
 
 @Data
@@ -11,16 +8,16 @@ public class SignupRequest {
 	
 	private String lname;
 	
-	private Boolean gender;
+	private String gender;
 	
-	private Date age;
+	private String birthday;
 	
-	private String contactAdd;
+	private String phone;
 	
-	private String username;
+	private String email;
 	
 	private String password;
 	
-	private Set<String> role;
+	private String role;
 
 }

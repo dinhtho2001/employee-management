@@ -11,5 +11,5 @@ import com.example.demo.model.enums.ERoles;
 @Repository
 public interface RoleRepository  extends JpaRepository<Role, Long> {
 
-	Optional<Role> findByName(ERoles name);
+	Optional<Role> findByName(String name);
 }

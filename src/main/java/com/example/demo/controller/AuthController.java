@@ -1,5 +1,9 @@
 package com.example.demo.controller;
 
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,9 +14,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.dto.EmployeeDTO;
 import com.example.demo.dto.request.LoginRequest;
 import com.example.demo.dto.request.SignupRequest;
+import com.example.demo.dto.response.ErrorResponse;
 import com.example.demo.dto.response.JwtResponse;
+import com.example.demo.dto.response.SuccessReponse;
+import com.example.demo.exception.ErrorParam;
+import com.example.demo.exception.SysError;
 import com.example.demo.repository.RoleRepository;
 import com.example.demo.service.IAuthService;
 
@@ -33,20 +42,26 @@ public class AuthController {
 	@PostMapping("/signin")
 	public ResponseEntity<?> signin(@RequestBody LoginRequest loginRequest) {
 		JwtResponse jwtResponse = authService.signin(loginRequest);
-		if (jwtResponse != null) {
-			//return ResponseEntity.ok(jwtResponse);
-			return ResponseEntity.status(HttpStatus.OK).header("headers", "header").body(jwtResponse);
+		if (jwtResponse.getUsername() == null) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
+					new ErrorResponse("Bad Request", new SysError("email-not-found", new ErrorParam()))
+					);
 		} else {
-			return new ResponseEntity<>("not found", HttpStatus.BAD_REQUEST);
+			return ResponseEntity.status(HttpStatus.OK).body(jwtResponse);
 		}
 	}
 
 	@PostMapping("/signup")
-	public ResponseEntity<?> signup(@RequestBody SignupRequest signupRequest) {
-		if (authService.signup(signupRequest) != null) {
-			return ResponseEntity.ok("User registered successfully!");
+	public ResponseEntity<?> signup(@RequestBody SignupRequest signupRequest) throws ParseException {
+		EmployeeDTO employeeDTO = authService.signup(signupRequest);
+		if (employeeDTO.getEmpEmail() == null || employeeDTO.getContactAdd() == null) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
+					new ErrorResponse("Bad Request", new SysError("email-already-exists", new ErrorParam("email")))
+					);
 		} else {
-			return ResponseEntity.badRequest().body("Error: Username is already taken!");
+			List<EmployeeDTO> employeeDTOs = new ArrayList<>();
+			employeeDTOs.add(employeeDTO);
+			return ResponseEntity.status(HttpStatus.OK).body(new SuccessReponse("Success",employeeDTOs , ""));
 		}
 	}
 
