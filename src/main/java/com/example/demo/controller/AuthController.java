@@ -1,13 +1,10 @@
 package com.example.demo.controller;
 
 import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,7 +22,7 @@ import com.example.demo.exception.SysError;
 import com.example.demo.repository.RoleRepository;
 import com.example.demo.service.IAuthService;
 
-@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
@@ -35,19 +32,16 @@ public class AuthController {
 	
 	@Autowired
 	RoleRepository roleRepository;
-	
-	@Autowired
-	PasswordEncoder encoder;
 
 	@PostMapping("/signin")
 	public ResponseEntity<?> signin(@RequestBody LoginRequest loginRequest) {
 		JwtResponse jwtResponse = authService.signin(loginRequest);
-		if (jwtResponse.getUsername() == null) {
+		if (jwtResponse.getEmail() == null) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
-					new ErrorResponse("Bad Request", new SysError("email-not-found", new ErrorParam()))
+					new ErrorResponse(HttpStatus.BAD_REQUEST.name(), new SysError("email-not-found", new ErrorParam()))
 					);
 		} else {
-			return ResponseEntity.status(HttpStatus.OK).body(jwtResponse);
+			return ResponseEntity.status(HttpStatus.OK).body(new SuccessReponse("success", jwtResponse, HttpStatus.OK.name()));
 		}
 	}
 
@@ -56,12 +50,10 @@ public class AuthController {
 		EmployeeDTO employeeDTO = authService.signup(signupRequest);
 		if (employeeDTO.getEmpEmail() == null || employeeDTO.getContactAdd() == null) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
-					new ErrorResponse("Bad Request", new SysError("email-already-exists", new ErrorParam("email")))
+					new ErrorResponse(HttpStatus.BAD_REQUEST.name(), new SysError("email-already-exists", new ErrorParam("email")))
 					);
 		} else {
-			List<EmployeeDTO> employeeDTOs = new ArrayList<>();
-			employeeDTOs.add(employeeDTO);
-			return ResponseEntity.status(HttpStatus.OK).body(new SuccessReponse("Success",employeeDTOs , ""));
+			return ResponseEntity.status(HttpStatus.OK).body(new SuccessReponse("success",employeeDTO , HttpStatus.OK.name()));
 		}
 	}
 

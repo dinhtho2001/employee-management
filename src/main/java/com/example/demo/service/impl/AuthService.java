@@ -29,6 +29,7 @@ import com.example.demo.repository.RoleRepository;
 import com.example.demo.service.IAuthService;
 import com.example.demo.service.userdetail.UserDetailsImpl;
 
+
 @Service
 public class AuthService implements IAuthService {
 
@@ -63,10 +64,11 @@ public class AuthService implements IAuthService {
 		List<String> roles = userDetails.getAuthorities().stream().map(item -> item.getAuthority())
 				.collect(Collectors.toList());
 		JwtResponse response = new JwtResponse();;
-		response.setToken(token);
 		response.setId(Integer.parseInt(userDetails.getId().toString()));
-		response.setUsername(userDetails.getUsername());
+		response.setEmail(userDetails.getUsername());
 		response.setRoles(roles);
+		response.setAccess_token(token);
+		response.setToken_type("Bearer");
 		return response;
 	}
 
