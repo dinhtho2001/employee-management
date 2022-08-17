@@ -2,7 +2,6 @@ package com.example.demo.model;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -56,7 +55,7 @@ public class Employee {
 	private List<Leave> leaves = new ArrayList<>();
 
 	@OneToMany(mappedBy = "employeeId")
-	private List<Qualification>  qualifications= new ArrayList<>();
+	private List<Qualification>  qualifications = new ArrayList<>();
 	
 	@OneToMany(mappedBy = "employeeId")
 	private List<Payroll> payrolls = new ArrayList<>();

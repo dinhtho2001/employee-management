@@ -22,6 +22,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.dto.EmployeeDTO;
 import com.example.demo.dto.request.UpdateRoleRequest;
+import com.example.demo.dto.response.EmployeeResponse;
+import com.example.demo.dto.response.ErrorResponse;
+import com.example.demo.dto.response.SuccessReponse;
+import com.example.demo.exception.ErrorParam;
+import com.example.demo.exception.SysError;
 import com.example.demo.service.IEmployeeService;
 import com.example.demo.service.IFileService;
 
@@ -38,13 +43,19 @@ public class EmployeeController {
 	@GetMapping
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public ResponseEntity<?> findAll(@RequestParam("page") int page, @RequestParam("limit") int limit) {
-		return ResponseEntity.ok(service.findAll(page, limit));
+		EmployeeResponse employeeResponse = service.findAll(page, limit);
+		if (employeeResponse.getPage() > employeeResponse.getTotal_page()) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
+					new ErrorResponse(HttpStatus.BAD_REQUEST.name(), new SysError("page-error", new ErrorParam("page")))
+					);
+		}
+		return ResponseEntity.ok(new SuccessReponse("success", employeeResponse, HttpStatus.OK.name()));
 	}
 
 	@GetMapping("/{id}")
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public ResponseEntity<?> findById(@PathVariable("id") Long id) {
-		return ResponseEntity.ok(service.findOne(id));
+		return ResponseEntity.ok(new SuccessReponse("success", service.findOne(id), HttpStatus.OK.name()));
 	}
 	
 	@PutMapping("/update-role")
@@ -53,20 +64,22 @@ public class EmployeeController {
 		if (service.updateRole(request)) {
 			return ResponseEntity.ok("Success");
 		}
-		return ResponseEntity.ok("false");
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
+				new ErrorResponse(HttpStatus.BAD_REQUEST.name(), new SysError("email-not-found", new ErrorParam()))
+				);
 	}
 
 	@PostMapping
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public ResponseEntity<?> createEmployee(@RequestBody EmployeeDTO dto) {
-		return ResponseEntity.ok(service.create(dto));
+		return ResponseEntity.ok(new SuccessReponse("success", service.create(dto), HttpStatus.OK.name()));
 	}
 
 	@PutMapping("/{id}")
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public ResponseEntity<?> updateById(@RequestBody EmployeeDTO dto, @PathVariable("id") Long id) {
 		dto.setEmpId(id);
-		return ResponseEntity.ok(service.update(dto));
+		return ResponseEntity.ok(new SuccessReponse("success", service.update(dto), HttpStatus.OK.name()));
 	}
 
 	@DeleteMapping("/{id}")
@@ -75,7 +88,9 @@ public class EmployeeController {
 		if(service.delete(id)) {
 			return ResponseEntity.ok("Success");
 		}
-		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("False");
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
+				new ErrorResponse(HttpStatus.BAD_REQUEST.name(), new SysError("email-not-found", new ErrorParam()))
+				);
 		
 	}
 
@@ -85,7 +100,9 @@ public class EmployeeController {
 		if(service.deletes(ids)) {
 			return ResponseEntity.ok("Success");
 		}
-		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("False");
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
+				new ErrorResponse(HttpStatus.BAD_REQUEST.name(), new SysError("email-not-found", new ErrorParam()))
+				);
 	}
 
 	@PostMapping("/readexcel")
@@ -98,6 +115,8 @@ public class EmployeeController {
 				return ResponseEntity.status(HttpStatus.OK).body("Success");
 			}
 		}
-		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("false");
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
+				new ErrorResponse(HttpStatus.BAD_REQUEST.name(), new SysError("email-not-found", new ErrorParam()))
+				);
 	}
 }

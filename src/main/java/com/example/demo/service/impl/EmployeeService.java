@@ -46,13 +46,12 @@ public class EmployeeService implements IEmployeeService {
 		EmployeeResponse response = new EmployeeResponse();
 		try {
 			Pageable pageable = PageRequest.of(page - 1, limit);
-			response.setListResult(findAll(pageable));
+			response.setEmployees(findAll(pageable));
 		} catch (Exception e) {
 			return null;
 		} finally {
 			response.setPage(page);
-			response.setTotalPage((int) Math.ceil((double) (totalTtem()) / limit));
-
+			response.setTotal_page((int) Math.ceil((double) (totalTtem()) / limit));
 		}
 		return response;
 	}
@@ -218,7 +217,6 @@ public class EmployeeService implements IEmployeeService {
 		} catch (Exception e) {
 			return false;
 		}
-//		return false;
 	}
 
 }
