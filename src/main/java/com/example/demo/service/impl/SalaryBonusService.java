@@ -42,7 +42,7 @@ public class SalaryBonusService implements ISalaryBonusService{
 
 	@Override
 	public SalaryBonusDTO findOne(Long id) {
-		Salary salary = salaryBonusRepository.findById(id).orElse(null);		
+		Salary salary = salaryBonusRepository.findById(id).orElse(new Salary());		
 		//return converter.toDTO(salary);
 		return null;
 	}

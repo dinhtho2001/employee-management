@@ -25,6 +25,7 @@ import lombok.Data;
 @Table (name = "employee")
 public class Employee {
 
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "emp_id")
@@ -65,5 +66,7 @@ public class Employee {
 		joinColumns = @JoinColumn(name = "emp_id"), 
 		inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles;
+	
+	
 
 }

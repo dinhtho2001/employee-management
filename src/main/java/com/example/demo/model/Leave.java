@@ -1,6 +1,5 @@
 package com.example.demo.model;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -37,6 +36,6 @@ public class Leave {
 	private String reason;
 	
 	@OneToMany(mappedBy = "leaveId")
-	private List<Payroll> payrolls = new ArrayList<>();
+	private List<Payroll> payrolls;
 
 }

@@ -3,12 +3,12 @@ package com.example.demo.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.converter.QualificationConverter;
 import com.example.demo.dto.QualificationDTO;
 import com.example.demo.dto.response.QualificationResponse;
 import com.example.demo.model.Employee;
@@ -27,7 +27,7 @@ public class QualificationService implements IQualificationService{
 	private EmployeeRepository  employeeRepository;
 	
 	@Autowired
-	private QualificationConverter converter ;
+	private ModelMapper modelMapper;
 
 	@Override
 	public QualificationResponse findAll(int page, int limit) {
@@ -48,17 +48,17 @@ public class QualificationService implements IQualificationService{
 	public QualificationDTO findOne(Long id) {
 		Qualification qualification = qualificationRepository.findById(id).orElse(null);		
 		QualificationDTO dto = new QualificationDTO();
-		dto = converter.toDTO(qualification);
+		dto = modelMapper.map(qualification, QualificationDTO.class);
 		return dto;
 	}
 
 	@Override
 	public QualificationDTO create(QualificationDTO dto) {
 		Employee employee = employeeRepository.findOneByEmpId(dto.getEmp_id());
-		Qualification qualification = converter.toEntity(dto);
+		Qualification qualification = modelMapper.map(dto, Qualification.class);
 		qualification.setEmployeeId(employee);
 		Qualification entitis = qualificationRepository.save(qualification);
-		return converter.toDTO(entitis);
+		return modelMapper.map(entitis, QualificationDTO.class);
 	}
 	
 	@Override
@@ -73,7 +73,7 @@ public class QualificationService implements IQualificationService{
 		//Employee employee = employeeRepository.findOneByEmpId(dto.getEmployeeId());
 		for(Qualification item : qualifications) {
 			//item.setEmployeeId(employee);
-			QualificationDTO dto = converter.toDTO(item);
+			QualificationDTO dto = modelMapper.map(item, QualificationDTO.class);
 			qualificationDTOs.add(dto);
 		}
 		return qualificationDTOs;
@@ -82,11 +82,11 @@ public class QualificationService implements IQualificationService{
 	@Override
 	public QualificationDTO update(QualificationDTO dto) {
 		Qualification oldqualification = qualificationRepository.findById(dto.getQualId()).orElse(null);
-		Qualification qualification = converter.toEntity(dto, oldqualification);
+		Qualification qualification = modelMapper.map(dto, Qualification.class);
 		Employee employee = employeeRepository.findOneByEmpId(dto.getEmp_id());
 		qualification.setEmployeeId(employee);
 		qualification = qualificationRepository.save(qualification);
-		return converter.toDTO(qualification);
+		return  modelMapper.map(qualification,QualificationDTO.class);
 	}
 	
 }
