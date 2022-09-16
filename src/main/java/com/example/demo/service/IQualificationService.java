@@ -1,7 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.dto.QualificationDTO;
-import com.example.demo.dto.response.QualificationResponse;
+import com.example.demo.payload.response.QualificationResponse;
 
 public interface IQualificationService {
 

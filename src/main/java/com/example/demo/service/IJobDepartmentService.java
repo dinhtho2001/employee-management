@@ -1,7 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.dto.JobDepartmentDTO;
-import com.example.demo.dto.response.JobDepartmentResponse;
+import com.example.demo.payload.response.JobDepartmentResponse;
 
 public interface IJobDepartmentService {
 

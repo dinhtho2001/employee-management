@@ -10,9 +10,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dto.LeaveDTO;
-import com.example.demo.dto.response.LeaveResponse;
 import com.example.demo.model.Employee;
 import com.example.demo.model.Leave;
+import com.example.demo.payload.response.LeaveResponse;
 import com.example.demo.repository.EmployeeRepository;
 import com.example.demo.repository.LeaveRepository;
 import com.example.demo.service.ILeaveService;

@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dto.EmployeeDTO;
-import com.example.demo.dto.request.LoginRequest;
-import com.example.demo.dto.request.SignupRequest;
-import com.example.demo.dto.response.ErrorResponse;
-import com.example.demo.dto.response.JwtResponse;
-import com.example.demo.dto.response.SuccessReponse;
 import com.example.demo.exception.ErrorParam;
 import com.example.demo.exception.SysError;
+import com.example.demo.payload.request.LoginRequest;
+import com.example.demo.payload.request.SignupRequest;
+import com.example.demo.payload.response.ErrorResponse;
+import com.example.demo.payload.response.JwtResponse;
+import com.example.demo.payload.response.SuccessReponse;
 import com.example.demo.repository.RoleRepository;
 import com.example.demo.service.IAuthService;
 

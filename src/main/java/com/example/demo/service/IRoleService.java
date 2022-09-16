@@ -1,7 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.dto.RoleDTO;
-import com.example.demo.dto.response.RoleResponse;
+import com.example.demo.payload.response.RoleResponse;
 
 public interface IRoleService {
 

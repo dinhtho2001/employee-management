@@ -1,7 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.dto.SalaryBonusDTO;
-import com.example.demo.dto.response.SalaryBonusResponse;
+import com.example.demo.payload.response.SalaryBonusResponse;
 
 public interface ISalaryBonusService {
 	SalaryBonusResponse findAll(int page, int limit);

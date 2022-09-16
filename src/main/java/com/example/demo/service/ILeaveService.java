@@ -1,7 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.dto.LeaveDTO;
-import com.example.demo.dto.response.LeaveResponse;
+import com.example.demo.payload.response.LeaveResponse;
 
 public interface ILeaveService {
 

@@ -9,9 +9,9 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.dto.EmployeeDTO;
 import com.example.demo.dto.RoleDTO;
-import com.example.demo.dto.response.RoleResponse;
 import com.example.demo.model.Employee;
 import com.example.demo.model.Role;
+import com.example.demo.payload.response.RoleResponse;
 import com.example.demo.repository.RoleRepository;
 import com.example.demo.service.IRoleService;
 

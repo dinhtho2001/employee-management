@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dto.QualificationDTO;
-import com.example.demo.dto.response.QualificationResponse;
+import com.example.demo.payload.response.QualificationResponse;
 import com.example.demo.service.IQualificationService;
 
 @RestController

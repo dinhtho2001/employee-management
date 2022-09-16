@@ -22,10 +22,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dto.EmployeeDTO;
-import com.example.demo.dto.request.UpdateRoleRequest;
-import com.example.demo.dto.response.EmployeeResponse;
 import com.example.demo.model.Employee;
 import com.example.demo.model.Role;
+import com.example.demo.payload.request.UpdateRoleRequest;
+import com.example.demo.payload.response.EmployeeResponse;
 import com.example.demo.repository.EmployeeRepository;
 import com.example.demo.service.IEmployeeService;
 

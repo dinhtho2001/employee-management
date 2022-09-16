@@ -19,11 +19,11 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.config.jwt.JwtUtils;
 import com.example.demo.dto.EmployeeDTO;
-import com.example.demo.dto.request.LoginRequest;
-import com.example.demo.dto.request.SignupRequest;
-import com.example.demo.dto.response.JwtResponse;
 import com.example.demo.model.Employee;
 import com.example.demo.model.Role;
+import com.example.demo.payload.request.LoginRequest;
+import com.example.demo.payload.request.SignupRequest;
+import com.example.demo.payload.response.JwtResponse;
 import com.example.demo.repository.EmployeeRepository;
 import com.example.demo.repository.RoleRepository;
 import com.example.demo.service.IAuthService;

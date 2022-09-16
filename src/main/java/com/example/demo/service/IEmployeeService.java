@@ -3,8 +3,8 @@ package com.example.demo.service;
 import java.io.IOException;
 
 import com.example.demo.dto.EmployeeDTO;
-import com.example.demo.dto.request.UpdateRoleRequest;
-import com.example.demo.dto.response.EmployeeResponse;
+import com.example.demo.payload.request.UpdateRoleRequest;
+import com.example.demo.payload.response.EmployeeResponse;
 
 public interface IEmployeeService {
 	

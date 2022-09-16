@@ -10,9 +10,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dto.QualificationDTO;
-import com.example.demo.dto.response.QualificationResponse;
 import com.example.demo.model.Employee;
 import com.example.demo.model.Qualification;
+import com.example.demo.payload.response.QualificationResponse;
 import com.example.demo.repository.EmployeeRepository;
 import com.example.demo.repository.QualificationRepository;
 import com.example.demo.service.IQualificationService;

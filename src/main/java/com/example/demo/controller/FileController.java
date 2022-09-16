@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.example.demo.dto.response.FileResponse;
+import com.example.demo.payload.response.FileResponse;
 import com.example.demo.service.IFileService;
 
 @RestController

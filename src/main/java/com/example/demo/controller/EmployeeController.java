@@ -21,12 +21,12 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.dto.EmployeeDTO;
-import com.example.demo.dto.request.UpdateRoleRequest;
-import com.example.demo.dto.response.EmployeeResponse;
-import com.example.demo.dto.response.ErrorResponse;
-import com.example.demo.dto.response.SuccessReponse;
 import com.example.demo.exception.ErrorParam;
 import com.example.demo.exception.SysError;
+import com.example.demo.payload.request.UpdateRoleRequest;
+import com.example.demo.payload.response.EmployeeResponse;
+import com.example.demo.payload.response.ErrorResponse;
+import com.example.demo.payload.response.SuccessReponse;
 import com.example.demo.service.IEmployeeService;
 import com.example.demo.service.IFileService;
 

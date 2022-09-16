@@ -9,9 +9,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dto.SalaryBonusDTO;
-import com.example.demo.dto.response.SalaryBonusResponse;
 import com.example.demo.model.JobDepartment;
 import com.example.demo.model.Salary;
+import com.example.demo.payload.response.SalaryBonusResponse;
 import com.example.demo.repository.JobDepartmentRepository;
 import com.example.demo.repository.SalaryBonusRepository;
 import com.example.demo.service.ISalaryBonusService;

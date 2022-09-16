@@ -1,6 +1,4 @@
-package com.example.demo.dto.response;
-
-import com.example.demo.exception.SysError;
+package com.example.demo.payload.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,9 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ErrorResponse {
-
+public class SuccessReponse {
 	private String message;
-	private SysError sysError;
-
+	private Object data;
+    private String status;
 }

@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dto.RoleDTO;
-import com.example.demo.dto.response.ErrorResponse;
-import com.example.demo.dto.response.RoleResponse;
 import com.example.demo.exception.SysError;
+import com.example.demo.payload.response.ErrorResponse;
+import com.example.demo.payload.response.RoleResponse;
 import com.example.demo.service.IRoleService;
 
 @RestController
